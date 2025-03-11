@@ -3,7 +3,7 @@ import Foundation
 // MARK: - CLBeaconIdentityConstraint
 /// Represents the constraints used to identify a specific iBeacon.
 /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/clbeaconidentityconstraint)
-public struct CLBeaconIdentityConstraint: Hashable {
+public struct CLBeaconIdentityConstraint: Hashable, CustomDebugStringConvertible, CustomStringConvertible {
     /// The unique identifier of the beacon's proximity UUID.
     public let uuid: UUID
 
@@ -22,5 +22,25 @@ public struct CLBeaconIdentityConstraint: Hashable {
         self.uuid = uuid
         self.major = major
         self.minor = minor
+    }
+
+    // MARK: - CustomStringConvertible
+    /// A user-friendly description of the beacon identity constraint.
+    public var description: String {
+        var result = "CLBeaconIdentityConstraint(uuid: \(uuid.uuidString)"
+        if let major = major {
+            result += ", major: \(major)"
+        }
+        if let minor = minor {
+            result += ", minor: \(minor)"
+        }
+        result += ")"
+        return result
+    }
+
+    // MARK: - CustomDebugStringConvertible
+    /// A debug-friendly description of the beacon identity constraint.
+    public var debugDescription: String {
+        return description
     }
 }

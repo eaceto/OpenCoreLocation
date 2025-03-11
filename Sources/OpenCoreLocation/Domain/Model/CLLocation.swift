@@ -4,61 +4,61 @@ import Foundation
 /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation)
 open class CLLocation: NSObject, NSCopying, NSSecureCoding {
     // MARK: - Properties
-    
+
     /// The geographical coordinate of the location.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/coordinate)
     public let coordinate: CLLocationCoordinate2D
-    
+
     /// The altitude of the location in meters.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/altitude)
     public let altitude: CLLocationDistance
-    
+
     /// The timestamp when the location was determined.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/timestamp)
     public let timestamp: Date
-    
+
     /// The horizontal accuracy of the location in meters.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/horizontalaccuracy)
     public let horizontalAccuracy: CLLocationAccuracy
-    
+
     /// The vertical accuracy of the location in meters.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/verticalaccuracy)
     public let verticalAccuracy: CLLocationAccuracy
-    
+
     /// The direction of travel of the device in degrees relative to true north.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/course)
     public let course: CLLocationDirection
-    
+
     /// The accuracy of the course measurement in degrees.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/courseaccuracy)
     public let courseAccuracy: CLLocationDirectionAccuracy
-    
+
     /// The speed of the device in meters per second.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/speed)
     public let speed: CLLocationSpeed
-    
+
     /// The accuracy of the speed measurement in meters per second.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/speedaccuracy)
     public let speedAccuracy: CLLocationSpeedAccuracy
-    
+
     // MARK: - Additional Properties
-    
+
     /// The floor level of the location (if available).
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/floor)
     public let floor: CLFloor?
-    
+
     /// Additional source information about how the location was determined.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocation/sourceinformation)
     public let sourceInformation: CLLocationSourceInformation?
-    
+
     // MARK: - NSSecureCoding Conformance
-    
+
     /// Indicates that `CLLocation` supports secure coding.
     /// [Apple Documentation](https://developer.apple.com/documentation/foundation/nssecurecoding)
     public static var supportsSecureCoding: Bool = true
 
     // MARK: - Initialization
-    
+
     /// Initializes a new `CLLocation` object with latitude and longitude.
     /// - Parameters:
     ///   - latitude: The latitude of the location.
@@ -103,9 +103,9 @@ open class CLLocation: NSObject, NSCopying, NSSecureCoding {
         self.floor = floor
         self.sourceInformation = sourceInformation
     }
-    
+
     // MARK: - Distance Calculation
-    
+
     /// Computes the great-circle distance between two locations.
     public func distance(from location: CLLocation) -> CLLocationDistance {
         let lat1 = coordinate.latitude * .pi / 180
@@ -126,7 +126,7 @@ open class CLLocation: NSObject, NSCopying, NSSecureCoding {
     }
 
     // MARK: - NSCopying Conformance
-    
+
     /// Creates a copy of this `CLLocation` instance.
     public func copy(with zone: NSZone? = nil) -> Any {
         return CLLocation(
@@ -143,9 +143,9 @@ open class CLLocation: NSObject, NSCopying, NSSecureCoding {
             sourceInformation: sourceInformation
         )
     }
-    
+
     // MARK: - NSSecureCoding Conformance
-    
+
     /// Initializes a `CLLocation` from an `NSCoder`.
     public required init?(coder: NSCoder) {
         let latitude = coder.decodeDouble(forKey: "latitude")
@@ -160,7 +160,7 @@ open class CLLocation: NSObject, NSCopying, NSSecureCoding {
         let timestamp = coder.decodeObject(of: NSDate.self, forKey: "timestamp") as Date? ?? Date()
         let floor = coder.decodeObject(of: CLFloor.self, forKey: "floor")
         let sourceInformation = coder.decodeObject(of: CLLocationSourceInformation.self, forKey: "sourceInformation")
-        
+
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.altitude = altitude
         self.horizontalAccuracy = horizontalAccuracy
@@ -173,7 +173,7 @@ open class CLLocation: NSObject, NSCopying, NSSecureCoding {
         self.floor = floor
         self.sourceInformation = sourceInformation
     }
-    
+
     /// Encodes this `CLLocation` into an `NSCoder`.
     public func encode(with coder: NSCoder) {
         coder.encode(coordinate.latitude, forKey: "latitude")

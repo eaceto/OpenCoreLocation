@@ -31,7 +31,7 @@ final class LowAccuracyLocationProvider: LocationProviderContract, @unchecked Se
     // Cache Variables (Protected by a Serial DispatchQueue)
     private var lastLocation: SendableCLLocation?
     private var lastFetchTime: Date?
-    private let cacheQueue = DispatchQueue(label: "com.opencorelocation.cacheQueue", attributes: .concurrent)
+    private let cacheQueue = DispatchQueue(label: "com.opencorelocation.LowAccuracyLocationProvider.cacheQueue", attributes: .concurrent)
 
     init(session: URLSession = .shared) {
         self.session = session

@@ -23,8 +23,8 @@ final class CLLocationManagerService {
 
     /// Timer for continuous location updates
     private var locationUpdateTimer: DispatchSourceTimer?
-    private let queue = DispatchQueue(label: "com.opencorelocation.CLLocationManagerService.startUpdatingLocationTimer", attributes: .concurrent)
-    
+    private let queue = DispatchQueue(label: "com.opencorelocation.CLLocationManagerService.queue", attributes: .concurrent)
+
     // MARK: - Initializer
     init() {
         // Initialize with the default provider for all accuracies

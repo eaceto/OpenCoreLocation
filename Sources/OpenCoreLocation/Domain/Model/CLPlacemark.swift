@@ -162,9 +162,9 @@ open class CLPlacemark: NSObject, NSCopying, NSSecureCoding, @unchecked Sendable
 }
 
 #if !canImport(Contacts)
-// MARK: - GenericPostalAddress (Cross-Platform Alternative to CNPostalAddress)
+// MARK: - CNPostalAddress (Cross-Platform Alternative to Apple's CNPostalAddress)
 /// A cross-platform struct to represent a postal address in a Linux-compatible way.
-public struct CNPostalAddress: Sendable {
+public struct CNPostalAddress: Sendable, CustomStringConvertible, CustomDebugStringConvertible {
     public let street: String?
     public let city: String?
     public let state: String?
@@ -178,6 +178,30 @@ public struct CNPostalAddress: Sendable {
         self.state = state
         self.country = country
         self.postalCode = postalCode
+    }
+
+    // MARK: - CustomStringConvertible
+    public var description: String {
+        var components: [String] = []
+        if let street = street { components.append(street) }
+        if let city = city { components.append(city) }
+        if let state = state { components.append(state) }
+        if let postalCode = postalCode { components.append(postalCode) }
+        if let country = country { components.append(country) }
+        return components.joined(separator: ", ")
+    }
+
+    // MARK: - CustomDebugStringConvertible
+    public var debugDescription: String {
+        """
+        CNPostalAddress(
+            street: \(street ?? "nil"),
+            city: \(city ?? "nil"),
+            state: \(state ?? "nil"),
+            postalCode: \(postalCode ?? "nil"),
+            country: \(country ?? "nil")
+        )
+        """
     }
 }
 #endif

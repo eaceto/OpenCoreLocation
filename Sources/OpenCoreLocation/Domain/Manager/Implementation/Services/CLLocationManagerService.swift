@@ -18,8 +18,9 @@ final class CLLocationManagerService {
     weak var delegate: CLLocationManagerServiceDelegate?
 
     /// Timer for continuous location updates
-    private var locationUpdateTimer: Timer?
-
+    private var locationUpdateTimer: DispatchSourceTimer?
+    private let queue = DispatchQueue(label: "com.opencorelocation.CLLocationManagerService.startUpdatingLocationTimer", attributes: .concurrent)
+    
     // MARK: - Initializer
     init() {
         // Initialize with the default provider for all accuracies
@@ -76,23 +77,21 @@ final class CLLocationManagerService {
         let interval = provider.poolInterval
 
         // Start the timer with the provider's pool interval
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            locationUpdateTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
-                Task {
-                    await self?.requestLocation(with: accuracy)
-                }
+        let timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.schedule(deadline: .now(), repeating: interval)
+
+        timer.setEventHandler { [weak self] in
+            Task {
+                await self?.requestLocation(with: accuracy)
             }
         }
 
-        // Immediately request the first location update instead of waiting for the timer
-        Task {
-            await requestLocation(with: accuracy)
-        }
+        locationUpdateTimer = timer // Store the timer reference
+        timer.resume() // Start the timer
     }
 
     func stopUpdatingLocation() {
-        locationUpdateTimer?.invalidate()
+        locationUpdateTimer?.cancel()
         locationUpdateTimer = nil
     }
 }

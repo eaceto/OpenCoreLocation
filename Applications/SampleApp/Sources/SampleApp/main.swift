@@ -38,9 +38,9 @@ class Delegate: NSObject, CLLocationManagerDelegate {
         }
 
         #if os(macOS)
-        timeoutTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false, block: {_ in self.timeout()})
+        timeoutTimer = Timer.scheduledTimer(withTimeInterval: 240.0, repeats: false, block: {_ in self.timeout()})
         #else
-        DispatchQueue.global().asyncAfter(deadline: .now() + 10.0) { self.timeout() }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 240.0) { self.timeout() }
         #endif
 
         self.locationManager.startUpdatingLocation()

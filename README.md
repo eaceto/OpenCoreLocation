@@ -13,6 +13,83 @@ This project is currently under active development, aiming to create a fully com
 - [ ] Implement more accuracy-based providers for different use cases.
 - [ ] Extensive testing and validation on Linux distributions.
 
+## Installation
+
+## Installation
+
+### Using Swift Package Manager (SPM)
+
+You can add **OpenCoreLocation** to your project using **Swift Package Manager (SPM)**.
+
+#### Step 1: Add the Dependency
+
+In your **Package.swift**, add the following dependency:
+
+```swift
+// swift-tools-version:5.7
+import PackageDescription
+
+let package = Package(
+    name: "YourProject",
+    platforms: [
+        .macOS(.v10_15), .linux
+    ],
+    dependencies: [
+        .package(url: "https://github.com/yourusername/OpenCoreLocation.git", from: "1.0.0")
+    ],
+    targets: [
+        .target(
+            name: "YourProject",
+            dependencies: ["OpenCoreLocation"]
+        )
+    ]
+)
+```
+
+If you’re working in **Xcode**, you can also add OpenCoreLocation via Xcode’s SPM Integration:
+1.	Open your Xcode Project.
+2.	Go to **File > Swift Packages > Add Package Dependency**.
+3.	Enter the repository URL: https://github.com/eaceto/OpenCoreLocation.git    
+
+
+## Usage
+
+To use **OpenCoreLocation**, import it in your Swift project. Since this library is intended to replace Apple's `CoreLocation` on **Linux**, you should conditionally import `CoreLocation` on macOS and iOS while using `OpenCoreLocation` on Linux.
+
+### Basic Example
+
+```swift
+#if os(Linux)
+import OpenCoreLocation
+#else
+import CoreLocation
+#endif
+
+class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        print("Updated location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location update failed: \(error.localizedDescription)")
+    }
+}
+
+let locationManager = CLLocationManager()
+let delegate = LocationManagerDelegate()
+
+locationManager.delegate = delegate
+locationManager.requestWhenInUseAuthorization()
+locationManager.startUpdatingLocation()
+````
+
+**Notes:**
+* On Linux, this will use OpenCoreLocation to provide similar functionality to CoreLocation on macOS.
+* The #if os(Linux) condition ensures that the correct library is imported based on the operating system.
+* The CLLocationManager instance works the same way as in Apple’s API, making it easy to port existing code.
+
+
 ## Running the Sample Application
 A sample application using OpenCoreLocation is available in the `Applications/SampleApp` directory. This CLI tool fetches the current location and displays it in a formatted manner.
 

@@ -1,5 +1,9 @@
 import Foundation
 
+#if canImport(CoreFoundation)
+import CoreFoundation
+#endif
+
 // MARK: - CLLocationManagerService
 /// Handles the business logic for CLLocationManager including accuracy-based provider selection and reactive location updates.
 final class CLLocationManagerService {

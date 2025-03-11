@@ -12,6 +12,10 @@ import OpenCoreLocation
 import Dispatch
 #endif
 
+#if canImport(CoreFoundation)
+import CoreFoundation
+#endif
+
 enum OutputFormat {
     case json
     case string(String)
@@ -38,9 +42,9 @@ class Delegate: NSObject, CLLocationManagerDelegate {
         }
 
         #if os(macOS)
-        timeoutTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false, block: {_ in self.timeout()})
+        timeoutTimer = Timer.scheduledTimer(withTimeInterval: 120.0, repeats: false, block: {_ in self.timeout()})
         #else
-        DispatchQueue.global().asyncAfter(deadline: .now() + 10.0) { self.timeout() }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 120.0) { self.timeout() }
         #endif
 
         self.locationManager.startUpdatingLocation()
@@ -180,5 +184,5 @@ delegate.start()
 #if os(macOS)
 RunLoop.main.run()
 #else
-dispatchMain() // Keeps the main thread alive on Linux
+CFRunLoopRun() // Keeps the main thread alive on Linux
 #endif

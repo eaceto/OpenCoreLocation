@@ -362,10 +362,16 @@ Check the `/Examples` directory for complete demonstration code:
 
 #### Running Examples
 ```bash
-# Copy example to your project or run with Swift
-swift Examples/RegionMonitoringExample.swift
+# Run examples using Swift Package Manager
+swift run RegionMonitoringExample     # Interactive region monitoring demo
+swift run LocationUtilsDemo           # Geographic utilities showcase  
+swift run DistanceFilterDemo          # Distance filtering demonstration
+swift run LocationAccuracyExample     # Multi-provider accuracy testing
 
-# Or integrate into your existing project
+# Or build all examples at once
+swift build
+
+# Copy examples to your project for integration
 cp Examples/RegionMonitoringExample.swift Sources/YourApp/
 ```
 

@@ -23,7 +23,11 @@ help:
 	@echo "  lint       - Lint code (if swiftlint is available)"
 	@echo ""
 	@echo "Examples:"
-	@echo "  examples   - List available example files"
+	@echo "  examples            - List available example files"
+	@echo "  run-region-example  - Run region monitoring example"
+	@echo "  run-utils-example   - Run location utilities example" 
+	@echo "  run-filter-example  - Run distance filter example"
+	@echo "  run-accuracy-example- Run accuracy demonstration"
 	@echo ""
 
 # Build the project
@@ -101,7 +105,28 @@ examples:
 	@echo "=========================="
 	@ls -la Examples/*.swift 2>/dev/null | awk '{print "  " $$NF " - " $$5 " bytes"}' || echo "  No example files found"
 	@echo ""
-	@echo "Run examples by copying to your project or using swift run"
+	@echo "Run examples with:"
+	@echo "  swift run RegionMonitoringExample"
+	@echo "  swift run LocationUtilsDemo"
+	@echo "  swift run DistanceFilterDemo"
+	@echo "  swift run LocationAccuracyExample"
+
+# Run individual examples
+run-region-example:
+	@echo "🎯 Running region monitoring example..."
+	swift run RegionMonitoringExample
+
+run-utils-example:
+	@echo "🔧 Running location utilities example..."
+	swift run LocationUtilsDemo
+
+run-filter-example:
+	@echo "📏 Running distance filter example..."
+	swift run DistanceFilterDemo
+
+run-accuracy-example:
+	@echo "🎯 Running accuracy example..."
+	swift run LocationAccuracyExample
 
 # Development workflow
 dev: clean build test docs

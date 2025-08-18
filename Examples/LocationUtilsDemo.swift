@@ -173,6 +173,12 @@ class LocationUtilsDemo {
     }
 }
 
-// Usage:
-// let demo = LocationUtilsDemo()
-// demo.demonstrateLocationUtils()
+// MARK: - Main Entry Point
+
+@main
+struct LocationUtilsMain {
+    static func main() {
+        let demo = LocationUtilsDemo()
+        demo.demonstrateLocationUtils()
+    }
+}

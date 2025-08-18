@@ -99,6 +99,12 @@ class DemoDelegate: NSObject, CLLocationManagerDelegate {
     }
 }
 
-// Usage:
-// let demo = DistanceFilterDemo()
-// await demo.demonstrateDistanceFilter()
+// MARK: - Main Entry Point
+
+@main
+struct DistanceFilterMain {
+    static func main() async {
+        let demo = DistanceFilterDemo()
+        await demo.demonstrateDistanceFilter()
+    }
+}

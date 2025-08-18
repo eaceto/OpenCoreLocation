@@ -77,6 +77,12 @@ class ExampleDelegate: NSObject, CLLocationManagerDelegate {
     }
 }
 
-// Usage:
-// let example = LocationAccuracyExample()
-// await example.demonstrateProviders()
+// MARK: - Main Entry Point
+
+@main
+struct LocationAccuracyMain {
+    static func main() async {
+        let example = LocationAccuracyExample()
+        await example.demonstrateProviders()
+    }
+}

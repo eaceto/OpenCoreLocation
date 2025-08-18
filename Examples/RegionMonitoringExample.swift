@@ -76,13 +76,13 @@ class RegionMonitoringExample: CLLocationManagerDelegate {
         print("  • Downtown SF (500m radius) - Entry & Exit notifications")
         print("  • Golden Gate Park (200m radius) - Entry notifications only")
         print("  • Office Building (50m radius) - Entry & Exit notifications")
-        print("  Total monitored regions: \\(locationManager.monitoredRegions.count)")
+        print("  Total monitored regions: \(locationManager.monitoredRegions.count)")
     }
     
     // MARK: - CLLocationManagerDelegate Implementation
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("🔐 Authorization status changed: \\(authorizationStatusString(status))")
+        print("🔐 Authorization status changed: \(authorizationStatusString(status))")
         
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
@@ -99,7 +99,7 @@ class RegionMonitoringExample: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
-        print("📍 Location updated: (\\(location.coordinate.latitude), \\(location.coordinate.longitude)) ±\\(location.horizontalAccuracy)m")
+        print("📍 Location updated: (\(location.coordinate.latitude), \(location.coordinate.longitude)) ±\(location.horizontalAccuracy)m")
         
         // Check the state of all monitored regions when location updates
         for region in manager.monitoredRegions {
@@ -108,20 +108,20 @@ class RegionMonitoringExample: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("❌ Location manager error: \\(error.localizedDescription)")
+        print("❌ Location manager error: \(error.localizedDescription)")
     }
     
     // MARK: - Region Monitoring Delegate Methods
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("🟢 Started monitoring region: \\(region.identifier)")
+        print("🟢 Started monitoring region: \(region.identifier)")
         // Request initial state of the region
         manager.requestState(for: region)
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         let regionName = regionDisplayName(for: region.identifier)
-        print("🎯 ENTERED region: \\(regionName)")
+        print("🎯 ENTERED region: \(regionName)")
         
         // You could trigger actions here like:
         // - Send a notification
@@ -132,7 +132,7 @@ class RegionMonitoringExample: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         let regionName = regionDisplayName(for: region.identifier)
-        print("🚪 EXITED region: \\(regionName)")
+        print("🚪 EXITED region: \(regionName)")
         
         // You could trigger actions here like:
         // - Send a farewell notification
@@ -143,12 +143,12 @@ class RegionMonitoringExample: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         let regionName = regionDisplayName(for: region.identifier)
         let stateString = regionStateString(state)
-        print("🔍 Region state determined: \\(regionName) is \\(stateString)")
+        print("🔍 Region state determined: \(regionName) is \(stateString)")
     }
     
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         let regionName = region?.identifier ?? "unknown"
-        print("❌ Region monitoring failed for \\(regionName): \\(error.localizedDescription)")
+        print("❌ Region monitoring failed for \(regionName): \(error.localizedDescription)")
     }
     
     // MARK: - Helper Methods
@@ -195,14 +195,17 @@ class RegionMonitoringExample: CLLocationManagerDelegate {
     }
 }
 
-// MARK: - Usage Example
+// MARK: - Main Entry Point
 
 /// Run the region monitoring example
 /// This demonstrates real-world usage of OpenCoreLocation's region monitoring capabilities
-func runRegionMonitoringExample() {
-    let example = RegionMonitoringExample()
-    example.runExample()
-    
-    // Keep the example running
-    RunLoop.current.run()
+@main
+struct RegionMonitoringMain {
+    static func main() {
+        let example = RegionMonitoringExample()
+        example.runExample()
+        
+        // Keep the example running
+        RunLoop.current.run()
+    }
 }

@@ -1,0 +1,76 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Debug LocationAccuracyExample",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/debug/LocationAccuracyExample",
+            "preLaunchTask": "swift: Build Debug LocationAccuracyExample"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Release LocationAccuracyExample",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/release/LocationAccuracyExample",
+            "preLaunchTask": "swift: Build Release LocationAccuracyExample"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Debug DistanceFilterDemo",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/debug/DistanceFilterDemo",
+            "preLaunchTask": "swift: Build Debug DistanceFilterDemo"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Release DistanceFilterDemo",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/release/DistanceFilterDemo",
+            "preLaunchTask": "swift: Build Release DistanceFilterDemo"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Debug LocationUtilsDemo",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/debug/LocationUtilsDemo",
+            "preLaunchTask": "swift: Build Debug LocationUtilsDemo"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Release LocationUtilsDemo",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/release/LocationUtilsDemo",
+            "preLaunchTask": "swift: Build Release LocationUtilsDemo"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Debug RegionMonitoringExample",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/debug/RegionMonitoringExample",
+            "preLaunchTask": "swift: Build Debug RegionMonitoringExample"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Release RegionMonitoringExample",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/release/RegionMonitoringExample",
+            "preLaunchTask": "swift: Build Release RegionMonitoringExample"
+        }
+    ]
+}

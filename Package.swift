@@ -14,7 +14,19 @@ let package = Package(
     products: [
         .library(
             name: "OpenCoreLocation",
-            targets: ["OpenCoreLocation"])
+            targets: ["OpenCoreLocation"]),
+        .executable(
+            name: "LocationAccuracyExample",
+            targets: ["LocationAccuracyExample"]),
+        .executable(
+            name: "DistanceFilterDemo", 
+            targets: ["DistanceFilterDemo"]),
+        .executable(
+            name: "LocationUtilsDemo",
+            targets: ["LocationUtilsDemo"]),
+        .executable(
+            name: "RegionMonitoringExample",
+            targets: ["RegionMonitoringExample"])
     ],
     targets: [
         .target(
@@ -22,6 +34,26 @@ let package = Package(
         .testTarget(
             name: "OpenCoreLocationTests",
             dependencies: ["OpenCoreLocation"]
-        )
+        ),
+        .executableTarget(
+            name: "LocationAccuracyExample",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["LocationAccuracyExample.swift"]),
+        .executableTarget(
+            name: "DistanceFilterDemo",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["DistanceFilterDemo.swift"]),
+        .executableTarget(
+            name: "LocationUtilsDemo",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["LocationUtilsDemo.swift"]),
+        .executableTarget(
+            name: "RegionMonitoringExample",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["RegionMonitoringExample.swift"])
     ]
 )

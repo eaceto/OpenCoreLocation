@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CLLocationManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/CLLocationManager" class="dashAnchor"></a>
+
+    <a title="CLLocationManager Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          OpenCoreLocation Docs
+        </a>
+         (89% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/eaceto/OpenCoreLocation">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">OpenCoreLocation</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Classes.html">Classes</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      CLLocationManager Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLCircularRegion.html">CLCircularRegion</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLFloor.html">CLFloor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLGeocoder.html">CLGeocoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLHeading.html">CLHeading</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLLocation.html">CLLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLLocationManager.html">CLLocationManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLLocationSourceInformation.html">CLLocationSourceInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLLocationUtils.html">CLLocationUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLPlacemark.html">CLPlacemark</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CLRegion.html">CLRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation21CLLocationDistanceMaxSdvp">CLLocationDistanceMax</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation17CLTimeIntervalMaxSdvp">CLTimeIntervalMax</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation21kCLDistanceFilterNoneSdvp">kCLDistanceFilterNone</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation23kCLLocationAccuracyBestSdvp">kCLLocationAccuracyBest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation36kCLLocationAccuracyBestForNavigationSdvp">kCLLocationAccuracyBestForNavigation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation32kCLLocationAccuracyHundredMetersSdvp">kCLLocationAccuracyHundredMeters</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation28kCLLocationAccuracyKilometerSdvp">kCLLocationAccuracyKilometer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation35kCLLocationAccuracyNearestTenMetersSdvp">kCLLocationAccuracyNearestTenMeters</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation26kCLLocationAccuracyReducedSdvp">kCLLocationAccuracyReduced</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation34kCLLocationAccuracyThreeKilometersSdvp">kCLLocationAccuracyThreeKilometers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:16OpenCoreLocation30kCLLocationCoordinate2DInvalidAA0dE1DVvp">kCLLocationCoordinate2DInvalid</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLAccuracyAuthorization.html">CLAccuracyAuthorization</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLActivityType.html">CLActivityType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLAuthorizationStatus.html">CLAuthorizationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLDeviceOrientation.html">CLDeviceOrientation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLDistanceFilter.html">CLDistanceFilter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLHeadingComponent.html">CLHeadingComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLLocationManagerHeadingFilter.html">CLLocationManagerHeadingFilter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLProximity.html">CLProximity</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CLRegionState.html">CLRegionState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:16OpenCoreLocation29CLLocationCoordinate2DIsValidySbAA0dE1DVF">CLLocationCoordinate2DIsValid(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:16OpenCoreLocation26CLLocationCoordinate2DMakeyAA0dE1DVSd_SdtF">CLLocationCoordinate2DMake(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CLGeocoderImplementationContract.html">CLGeocoderImplementationContract</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CLLocationManagerDelegate.html">CLLocationManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/LocationProviderContract.html">LocationProviderContract</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CLBeaconIdentityConstraint.html">CLBeaconIdentityConstraint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CLError.html">CLError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CLError/Code.html">– Code</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CLLocationCoordinate2D.html">CLLocationCoordinate2D</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CLLocationUpdate.html">CLLocationUpdate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNPostalAddress.html">CNPostalAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/SendableCLLocation.html">SendableCLLocation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation26CLGeocodeCompletionHandlera">CLGeocodeCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation18CLLocationAccuracya">CLLocationAccuracy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation17CLLocationDegreesa">CLLocationDegrees</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation19CLLocationDirectiona">CLLocationDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation27CLLocationDirectionAccuracya">CLLocationDirectionAccuracy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation18CLLocationDistancea">CLLocationDistance</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation15CLLocationSpeeda">CLLocationSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:16OpenCoreLocation23CLLocationSpeedAccuracya">CLLocationSpeedAccuracy</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>CLLocationManager</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">CLLocationManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>The object you use to start and stop the delivery of location-related events to your app.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager">Apple Documentation</a></p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Delegates%20and%20Authorization"></a>
+                <a name="//apple_ref/swift/Section/Delegates and Authorization" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Delegates%20and%20Authorization"></a>
+                  <h3 class="section-name"><span>Delegates and Authorization</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC8delegateAA0dE8Delegate_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC8delegateAA0dE8Delegate_pSgvp">delegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The delegate object to receive update events.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/delegate">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="p">(</span><span class="kd">any</span> <span class="kt"><a href="../Protocols/CLLocationManagerDelegate.html">CLLocationManagerDelegate</a></span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC19authorizationStatusAA015CLAuthorizationG0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/authorizationStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC19authorizationStatusAA015CLAuthorizationG0Ovp">authorizationStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The current authorization status for the app.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/authorizationstatus">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">authorizationStatus</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLAuthorizationStatus.html">CLAuthorizationStatus</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC21accuracyAuthorizationAA010CLAccuracyG0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/accuracyAuthorization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC21accuracyAuthorizationAA010CLAccuracyG0Ovp">accuracyAuthorization</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The level of location accuracy the app has permission to use.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/accuracyauthorization">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">accuracyAuthorization</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLAccuracyAuthorization.html">CLAccuracyAuthorization</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC28isAuthorizedForWidgetUpdatesSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isAuthorizedForWidgetUpdates" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC28isAuthorizedForWidgetUpdatesSbvp">isAuthorizedForWidgetUpdates</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether a widget is eligible to receive location updates.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">isAuthorizedForWidgetUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Configuration%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Configuration Properties" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Configuration%20Properties"></a>
+                  <h3 class="section-name"><span>Configuration Properties</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC12activityTypeAA010CLActivityG0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/activityType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC12activityTypeAA010CLActivityG0Ovp">activityType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of activity the app expects the user to perform during location updates.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/activitytype">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">activityType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLActivityType.html">CLActivityType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC14distanceFilterSdvp"></a>
+                    <a name="//apple_ref/swift/Property/distanceFilter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC14distanceFilterSdvp">distanceFilter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum distance (measured in meters) a device must move before an update event is generated.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Set to <code><a href="../Global%20Variables.html#/s:16OpenCoreLocation21kCLDistanceFilterNoneSdvp">kCLDistanceFilterNone</a></code> to disable distance filtering and receive all location updates.
+    Values less than or equal to 0 disable the filter. Default is 10.0 meters.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/distancefilter">Apple Documentation</a>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">distanceFilter</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:16OpenCoreLocation18CLLocationDistancea">CLLocationDistance</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC15desiredAccuracySdvp"></a>
+                    <a name="//apple_ref/swift/Property/desiredAccuracy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC15desiredAccuracySdvp">desiredAccuracy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The accuracy of the location data that your app wants to receive.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/desiredaccuracy">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">desiredAccuracy</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:16OpenCoreLocation18CLLocationAccuracya">CLLocationAccuracy</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC06pausesC20UpdatesAutomaticallySbvp"></a>
+                    <a name="//apple_ref/swift/Property/pausesLocationUpdatesAutomatically" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC06pausesC20UpdatesAutomaticallySbvp">pausesLocationUpdatesAutomatically</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A Boolean value that indicates whether the location manager may pause location updates.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/pauseslocationupdatesautomatically">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">pausesLocationUpdatesAutomatically</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC016allowsBackgroundC7UpdatesSbvp"></a>
+                    <a name="//apple_ref/swift/Property/allowsBackgroundLocationUpdates" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC016allowsBackgroundC7UpdatesSbvp">allowsBackgroundLocationUpdates</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A Boolean value that indicates whether the app receives location updates when running in the background.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/allowsbackgroundlocationupdates">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">allowsBackgroundLocationUpdates</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Location%20and%20Heading%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Location and Heading Properties" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Location%20and%20Heading%20Properties"></a>
+                  <h3 class="section-name"><span>Location and Heading Properties</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC8locationAA0D0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/location" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC8locationAA0D0CSgvp">location</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The most recently retrieved user location.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/location">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLLocation.html">CLLocation</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC13headingFilterSdvp"></a>
+                    <a name="//apple_ref/swift/Property/headingFilter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC13headingFilterSdvp">headingFilter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum angular change (measured in degrees) required to generate new heading events.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/headingfilter">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">headingFilter</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:16OpenCoreLocation17CLLocationDegreesa">CLLocationDegrees</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC18headingOrientationAA08CLDeviceG0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/headingOrientation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC18headingOrientationAA08CLDeviceG0Ovp">headingOrientation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The device orientation to use when computing heading values.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/headingorientation">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">headingOrientation</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLDeviceOrientation.html">CLDeviceOrientation</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC7headingAA9CLHeadingCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/heading" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC7headingAA9CLHeadingCSgvp">heading</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The most recently reported heading.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/heading">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">heading</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLHeading.html">CLHeading</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Monitoring%20and%20Ranging"></a>
+                <a name="//apple_ref/swift/Section/Monitoring and Ranging" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Monitoring%20and%20Ranging"></a>
+                  <h3 class="section-name"><span>Monitoring and Ranging</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC31maximumRegionMonitoringDistanceSdvp"></a>
+                    <a name="//apple_ref/swift/Property/maximumRegionMonitoringDistance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC31maximumRegionMonitoringDistanceSdvp">maximumRegionMonitoringDistance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The largest boundary distance that can be assigned to a region.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/maximumregionmonitoringdistance">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">maximumRegionMonitoringDistance</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:16OpenCoreLocation18CLLocationDistancea">CLLocationDistance</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC16monitoredRegionsShyAA8CLRegionCGvp"></a>
+                    <a name="//apple_ref/swift/Property/monitoredRegions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC16monitoredRegionsShyAA8CLRegionCGvp">monitoredRegions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The set of shared regions monitored by all location-manager objects.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/monitoredregions">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">monitoredRegions</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC23rangedBeaconConstraintsShyAA26CLBeaconIdentityConstraintVGvp"></a>
+                    <a name="//apple_ref/swift/Property/rangedBeaconConstraints" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC23rangedBeaconConstraintsShyAA26CLBeaconIdentityConstraintVGvp">rangedBeaconConstraints</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The set of beacon constraints currently being tracked using ranging.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/rangedbeaconconstraints">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">rangedBeaconConstraints</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/CLBeaconIdentityConstraint.html">CLBeaconIdentityConstraint</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Service%20Integration"></a>
+                <a name="//apple_ref/swift/Section/Service Integration" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Service%20Integration"></a>
+                  <h3 class="section-name"><span>Service Integration</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@OpenCoreLocation@objc(cs)CLLocationManager(im)init"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@OpenCoreLocation@objc(cs)CLLocationManager(im)init">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Authorization%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Authorization Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Authorization%20Methods"></a>
+                  <h3 class="section-name"><span>Authorization Methods</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC29requestWhenInUseAuthorizationyyF"></a>
+                    <a name="//apple_ref/swift/Method/requestWhenInUseAuthorization()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC29requestWhenInUseAuthorizationyyF">requestWhenInUseAuthorization()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">requestWhenInUseAuthorization</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC26requestAlwaysAuthorizationyyF"></a>
+                    <a name="//apple_ref/swift/Method/requestAlwaysAuthorization()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC26requestAlwaysAuthorizationyyF">requestAlwaysAuthorization()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">requestAlwaysAuthorization</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC41requestTemporaryFullAccuracyAuthorization14withPurposeKey10completionySS_ys5Error_pSgcSgtF"></a>
+                    <a name="//apple_ref/swift/Method/requestTemporaryFullAccuracyAuthorization(withPurposeKey:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC41requestTemporaryFullAccuracyAuthorization14withPurposeKey10completionySS_ys5Error_pSgcSgtF">requestTemporaryFullAccuracyAuthorization(withPurposeKey:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">requestTemporaryFullAccuracyAuthorization</span><span class="p">(</span><span class="n">withPurposeKey</span> <span class="nv">purposeKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">((</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Location%20Management"></a>
+                <a name="//apple_ref/swift/Section/Location Management" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Location%20Management"></a>
+                  <h3 class="section-name"><span>Location Management</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC013startUpdatingC0yyF"></a>
+                    <a name="//apple_ref/swift/Method/startUpdatingLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC013startUpdatingC0yyF">startUpdatingLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts the generation of updates that report the user’s current location.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/startupdatinglocation()">Apple Documentation</a></p>
+
+<ul>
+<li>Calls <code>requestLocation(with:)</code> at provider-defined intervals (<code>poolInterval</code>).</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">startUpdatingLocation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC012stopUpdatingC0yyF"></a>
+                    <a name="//apple_ref/swift/Method/stopUpdatingLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC012stopUpdatingC0yyF">stopUpdatingLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stops all location updates
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/stopupdatinglocation()">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">stopUpdatingLocation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC07requestC0yyF"></a>
+                    <a name="//apple_ref/swift/Method/requestLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC07requestC0yyF">requestLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Requests the one-time delivery of the user’s current location.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/requestlocation()">Apple Documentation</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">requestLocation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Heading%20Management"></a>
+                <a name="//apple_ref/swift/Section/Heading Management" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Heading%20Management"></a>
+                  <h3 class="section-name"><span>Heading Management</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC20startUpdatingHeadingyyF"></a>
+                    <a name="//apple_ref/swift/Method/startUpdatingHeading()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC20startUpdatingHeadingyyF">startUpdatingHeading()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts the generation of updates that report the user&rsquo;s current heading.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Heading updates require magnetometer hardware which is not available on Linux.
+    This method is a no-op on Linux platforms and will not generate heading updates.
+    Use <code><a href="../Classes/CLLocationManager.html#/s:16OpenCoreLocation17CLLocationManagerC16headingAvailableSbyFZ">headingAvailable()</a></code> to check if heading services are available.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/startupdatingheading()">Apple Documentation</a>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">startUpdatingHeading</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC19stopUpdatingHeadingyyF"></a>
+                    <a name="//apple_ref/swift/Method/stopUpdatingHeading()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC19stopUpdatingHeadingyyF">stopUpdatingHeading()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stops the generation of heading updates.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method is a no-op on Linux platforms since heading updates are not supported.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/stopupdatingheading()">Apple Documentation</a>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">stopUpdatingHeading</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Service%20Availability"></a>
+                <a name="//apple_ref/swift/Section/Service Availability" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Service%20Availability"></a>
+                  <h3 class="section-name"><span>Service Availability</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC23locationServicesEnabledSbyFZ"></a>
+                    <a name="//apple_ref/swift/Method/locationServicesEnabled()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC23locationServicesEnabledSbyFZ">locationServicesEnabled()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether location services are enabled on the device.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">locationServicesEnabled</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC16headingAvailableSbyFZ"></a>
+                    <a name="//apple_ref/swift/Method/headingAvailable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC16headingAvailableSbyFZ">headingAvailable()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether the location manager is able to generate heading-related events.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">headingAvailable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Always returns <code>false</code> on Linux platforms as magnetometer hardware is not available.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/headingavailable()">Apple Documentation</a></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC011significantC25ChangeMonitoringAvailableSbyFZ"></a>
+                    <a name="//apple_ref/swift/Method/significantLocationChangeMonitoringAvailable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC011significantC25ChangeMonitoringAvailableSbyFZ">significantLocationChangeMonitoringAvailable()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether the significant-change location service is available on the device.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">significantLocationChangeMonitoringAvailable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Always returns <code>false</code> on Linux platforms as this service requires OS-level support not available on Linux.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/significantlocationchangemonitoringavailable()">Apple Documentation</a></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC21isMonitoringAvailable3forSbyXlXp_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/isMonitoringAvailable(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC21isMonitoringAvailable3forSbyXlXp_tFZ">isMonitoringAvailable(for:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether the device supports region monitoring using the specified class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">isMonitoringAvailable</span><span class="p">(</span><span class="k">for</span> <span class="nv">regionClass</span><span class="p">:</span> <span class="kt">AnyClass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regionClass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The class of region to check support for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Always returns <code>false</code> on Linux platforms as region monitoring requires OS-level support not available on Linux.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/ismonitoringavailable(for:)">Apple Documentation</a></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC18isRangingAvailableSbyFZ"></a>
+                    <a name="//apple_ref/swift/Method/isRangingAvailable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC18isRangingAvailableSbyFZ">isRangingAvailable()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether the device supports ranging of beacons that use the iBeacon protocol.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">isRangingAvailable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Always returns <code>false</code> on Linux platforms as beacon ranging requires Bluetooth LE hardware integration.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/israngingavailable()">Apple Documentation</a></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener">Ezequiel (Kimi) Aceto</a>. All rights reserved. (Last updated: 2025-08-18)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

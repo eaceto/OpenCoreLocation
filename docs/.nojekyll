@@ -1,0 +1,2 @@
+# This file tells GitHub Pages not to process the docs folder with Jekyll
+# This is necessary for Jazzy-generated documentation to work properly

@@ -1,0 +1,264 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Geocoder/CLGeocoder.swift",
+      "line": 7,
+      "symbol": "CLGeocodeCompletionHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Geocoder/CLGeocoderImplementationContract.swift",
+      "line": 23,
+      "symbol": "CLGeocoderImplementationContract.geocodePostalAddress(_:preferredLocale:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
+      "line": 85,
+      "symbol": "CLLocationManager.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
+      "line": 94,
+      "symbol": "CLLocationManager.requestWhenInUseAuthorization()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
+      "line": 99,
+      "symbol": "CLLocationManager.requestAlwaysAuthorization()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
+      "line": 104,
+      "symbol": "CLLocationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/Implementation/Providers/LocationProviderContract.swift",
+      "line": 3,
+      "symbol": "LocationProviderContract",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/Implementation/Providers/LocationProviderContract.swift",
+      "line": 21,
+      "symbol": "LocationProviderContract",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 90,
+      "symbol": "CLError.locationUnknown",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 91,
+      "symbol": "CLError.denied",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 92,
+      "symbol": "CLError.network",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 93,
+      "symbol": "CLError.headingFailure",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 94,
+      "symbol": "CLError.regionMonitoringDenied",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 95,
+      "symbol": "CLError.regionMonitoringFailure",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 96,
+      "symbol": "CLError.regionMonitoringSetupDelayed",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 97,
+      "symbol": "CLError.regionMonitoringResponseDelayed",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 98,
+      "symbol": "CLError.geocodeFoundNoResult",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 99,
+      "symbol": "CLError.geocodeFoundPartialResult",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 100,
+      "symbol": "CLError.geocodeCanceled",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 101,
+      "symbol": "CLError.deferredFailed",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 102,
+      "symbol": "CLError.deferredNotUpdatingLocation",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 103,
+      "symbol": "CLError.deferredAccuracyTooLow",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 104,
+      "symbol": "CLError.deferredDistanceFiltered",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 105,
+      "symbol": "CLError.deferredCanceled",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 106,
+      "symbol": "CLError.rangingUnavailable",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 107,
+      "symbol": "CLError.rangingFailure",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 108,
+      "symbol": "CLError.promptDeclined",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLError.swift",
+      "line": 109,
+      "symbol": "CLError.historicalLocationError",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLHeading.swift",
+      "line": 15,
+      "symbol": "CLHeading.init(magneticHeading:trueHeading:headingAccuracy:timestamp:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLLocationUpdate.swift",
+      "line": 31,
+      "symbol": "CLLocationUpdate.init(location:isStationary:accuracyLimited:authorizationDenied:authorizationDeniedGlobally:authorizationRequestInProgress:authorizationRestricted:insufficientlyInUse:locationUnavailable:serviceSessionRequired:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLPlacemark.swift",
+      "line": 148,
+      "symbol": "CLPlacemark.copy(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLPlacemark.swift",
+      "line": 153,
+      "symbol": "CLPlacemark.supportsSecureCoding",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLPlacemark.swift",
+      "line": 155,
+      "symbol": "CLPlacemark.encode(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLPlacemark.swift",
+      "line": 159,
+      "symbol": "CLPlacemark.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLRegion.swift",
+      "line": 90,
+      "symbol": "CLRegion.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLRegion.swift",
+      "line": 97,
+      "symbol": "CLRegion.isEqual(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Model/CLRegion.swift",
+      "line": 102,
+      "symbol": "CLRegion.hash",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation"
+}

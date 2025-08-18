@@ -1,0 +1,11 @@
+# Jazzy configuration for OpenCoreLocation
+
+module: OpenCoreLocation
+author: Ezequiel (Kimi) Aceto
+github_url: https://github.com/eaceto/OpenCoreLocation
+output: docs
+clean: true
+readme: README.md
+swift_build_tool: spm
+min_acl: public
+theme: fullwidth

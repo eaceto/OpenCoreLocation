@@ -27,14 +27,19 @@ final class CLLocationManagerService {
 
     // MARK: - Initializer
     init() {
-        // Initialize with the default provider for all accuracies
-        let defaultProvider = LowAccuracyLocationProvider()
+        // Initialize providers based on accuracy requirements
+        // Higher accuracy uses GPS, medium uses WiFi, low uses IP
+        let gpsProvider = GPSLocationProvider()
+        let wifiProvider = WiFiLocationProvider()
+        let ipProvider = LowAccuracyLocationProvider()
+        
         self.providers = [
-            kCLLocationAccuracyBest: defaultProvider,
-            kCLLocationAccuracyNearestTenMeters: defaultProvider,
-            kCLLocationAccuracyHundredMeters: defaultProvider,
-            kCLLocationAccuracyKilometer: defaultProvider,
-            kCLLocationAccuracyThreeKilometers: defaultProvider
+            kCLLocationAccuracyBestForNavigation: gpsProvider,
+            kCLLocationAccuracyBest: gpsProvider,
+            kCLLocationAccuracyNearestTenMeters: gpsProvider,
+            kCLLocationAccuracyHundredMeters: wifiProvider,
+            kCLLocationAccuracyKilometer: ipProvider,
+            kCLLocationAccuracyThreeKilometers: ipProvider
         ]
     }
 
@@ -43,13 +48,52 @@ final class CLLocationManagerService {
     func setProvider(for accuracy: CLLocationAccuracy, provider: any LocationProviderContract) {
         providers[accuracy] = provider
     }
+    
+    /// Selects the best available provider based on desired accuracy
+    /// Falls back to lower accuracy providers if higher ones are unavailable
+    private func selectProvider(for accuracy: CLLocationAccuracy) -> (any LocationProviderContract)? {
+        // Try to get the exact provider for requested accuracy
+        if let provider = providers[accuracy] {
+            return provider
+        }
+        
+        // Define accuracy hierarchy for fallback
+        let accuracyHierarchy: [CLLocationAccuracy] = [
+            kCLLocationAccuracyBestForNavigation,
+            kCLLocationAccuracyBest,
+            kCLLocationAccuracyNearestTenMeters,
+            kCLLocationAccuracyHundredMeters,
+            kCLLocationAccuracyKilometer,
+            kCLLocationAccuracyThreeKilometers
+        ]
+        
+        // Find the closest available accuracy
+        let requestedIndex = accuracyHierarchy.firstIndex { $0 == accuracy } ?? accuracyHierarchy.count
+        
+        // Try providers from requested accuracy downward (less accurate)
+        for i in requestedIndex..<accuracyHierarchy.count {
+            if let provider = providers[accuracyHierarchy[i]] {
+                return provider
+            }
+        }
+        
+        // If no less accurate provider found, try more accurate ones
+        for i in (0..<requestedIndex).reversed() {
+            if let provider = providers[accuracyHierarchy[i]] {
+                return provider
+            }
+        }
+        
+        // Last resort: return any available provider
+        return providers.values.first
+    }
 
     // MARK: - One-Time Location Request
     /// Requests the user's location **once** (single update)
-    /// - Apple Docs: ["Requests the one-time delivery of the user’s current location."](https://developer.apple.com/documentation/corelocation/cllocationmanager/requestlocation)
+    /// - Apple Docs: ["Requests the one-time delivery of the user's current location."](https://developer.apple.com/documentation/corelocation/cllocationmanager/requestlocation)
     func requestLocation(with accuracy: CLLocationAccuracy) async {
         do {
-            guard let provider = providers[accuracy] else {
+            guard let provider = selectProvider(for: accuracy) else {
                 delegate?.locationManagerService(self, didFailWithError: Errors.noProviderForAccuracy)
                 return
             }
@@ -61,8 +105,23 @@ final class CLLocationManagerService {
                 currentProvider = provider
             }
 
-            let location = try await provider.requestLocation()
-            delegate?.locationManagerService(self, didUpdateLocation: location)
+            // Try primary provider first
+            do {
+                let location = try await provider.requestLocation()
+                delegate?.locationManagerService(self, didUpdateLocation: location)
+            } catch {
+                // If high-accuracy provider fails, try fallback
+                if provider.id == "gpsd", let fallbackProvider = providers[kCLLocationAccuracyHundredMeters] {
+                    do {
+                        let location = try await fallbackProvider.requestLocation()
+                        delegate?.locationManagerService(self, didUpdateLocation: location)
+                        return
+                    } catch {
+                        // Fallback also failed
+                    }
+                }
+                throw error
+            }
         } catch {
             delegate?.locationManagerService(self, didFailWithError: error)
         }
@@ -72,8 +131,8 @@ final class CLLocationManagerService {
     func startUpdatingLocation(with accuracy: CLLocationAccuracy) {
         stopUpdatingLocation() // Ensure we clear any previous update cycles
 
-        // Fetch provider for the accuracy level
-        guard let provider = providers[accuracy] else {
+        // Select best available provider for the accuracy level
+        guard let provider = selectProvider(for: accuracy) else {
             delegate?.locationManagerService(self, didFailWithError: Errors.noProviderForAccuracy)
             return
         }

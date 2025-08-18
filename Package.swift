@@ -26,7 +26,13 @@ let package = Package(
             targets: ["LocationUtilsDemo"]),
         .executable(
             name: "RegionMonitoringExample",
-            targets: ["RegionMonitoringExample"])
+            targets: ["RegionMonitoringExample"]),
+        .executable(
+            name: "ProviderFallbackTest",
+            targets: ["ProviderFallbackTest"]),
+        .executable(
+            name: "QuickFallbackTest",
+            targets: ["QuickFallbackTest"])
     ],
     targets: [
         .target(
@@ -54,6 +60,16 @@ let package = Package(
             name: "RegionMonitoringExample",
             dependencies: ["OpenCoreLocation"],
             path: "Examples",
-            sources: ["RegionMonitoringExample.swift"])
+            sources: ["RegionMonitoringExample.swift"]),
+        .executableTarget(
+            name: "ProviderFallbackTest",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["ProviderFallbackTest.swift"]),
+        .executableTarget(
+            name: "QuickFallbackTest",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["QuickFallbackTest.swift"])
     ]
 )

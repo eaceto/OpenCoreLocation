@@ -77,11 +77,6 @@ final class CLLocationManagerService {
     /// Selects the best available provider based on desired accuracy
     /// Falls back to lower accuracy providers if higher ones are unavailable
     private func selectProvider(for accuracy: CLLocationAccuracy) -> (any LocationProviderContract)? {
-        // Try to get the exact provider for requested accuracy
-        if let provider = providers[accuracy] {
-            return provider
-        }
-        
         // Define accuracy hierarchy for fallback
         let accuracyHierarchy: [CLLocationAccuracy] = [
             kCLLocationAccuracyBestForNavigation,
@@ -111,6 +106,57 @@ final class CLLocationManagerService {
         
         // Last resort: return any available provider
         return providers.values.first
+    }
+    
+    /// Tries multiple providers in order of preference for the given accuracy
+    /// Returns the first provider that successfully provides a location
+    private func requestLocationWithFallback(for accuracy: CLLocationAccuracy) async throws -> SendableCLLocation {
+        // Define accuracy hierarchy for fallback
+        let accuracyHierarchy: [CLLocationAccuracy] = [
+            kCLLocationAccuracyBestForNavigation,
+            kCLLocationAccuracyBest,
+            kCLLocationAccuracyNearestTenMeters,
+            kCLLocationAccuracyHundredMeters,
+            kCLLocationAccuracyKilometer,
+            kCLLocationAccuracyThreeKilometers
+        ]
+        
+        // Find the closest available accuracy
+        let requestedIndex = accuracyHierarchy.firstIndex { $0 == accuracy } ?? accuracyHierarchy.count
+        
+        // Try providers from requested accuracy downward (less accurate)
+        var lastError: Error?
+        var providersTried = 0
+        
+        for i in requestedIndex..<accuracyHierarchy.count {
+            if let provider = providers[accuracyHierarchy[i]] {
+                providersTried += 1
+                
+                do {
+                    // Start provider if needed (start() methods don't usually fail)
+                    if currentProvider?.id != provider.id {
+                        try await currentProvider?.stop()
+                        try await provider.start()
+                        currentProvider = provider
+                    }
+                    
+                    // The key fallback point - requestLocation() can fail
+                    let location = try await provider.requestLocation()
+                    return location
+                } catch {
+                    lastError = error
+                    // Continue to next provider in hierarchy
+                    continue
+                }
+            }
+        }
+        
+        // If no provider worked, provide meaningful error
+        if providersTried == 0 {
+            throw Errors.noProviderForAccuracy
+        } else {
+            throw lastError ?? Errors.failedToUpdateLocation
+        }
     }
     
     /// Determines if a location update should be reported based on the distance filter
@@ -149,47 +195,14 @@ final class CLLocationManagerService {
     /// - Apple Docs: ["Requests the one-time delivery of the user's current location."](https://developer.apple.com/documentation/corelocation/cllocationmanager/requestlocation)
     func requestLocation(with accuracy: CLLocationAccuracy) async {
         do {
-            guard let provider = selectProvider(for: accuracy) else {
-                delegate?.locationManagerService(self, didFailWithError: Errors.noProviderForAccuracy)
-                return
-            }
-            let currentProviderId = currentProvider?.id
-
-            if currentProviderId != provider.id {
-                try await currentProvider?.stop()
-                try await provider.start()
-                currentProvider = provider
-            }
-
-            // Try primary provider first
-            do {
-                let location = try await provider.requestLocation()
-                
-                // Apply distance filter before reporting location
-                if shouldReportLocation(location) {
-                    updateLastReportedLocation(location)
-                    checkRegionBoundaries(for: location)
-                    delegate?.locationManagerService(self, didUpdateLocation: location)
-                }
-                // Note: Even if filtered, this is considered a successful location request
-            } catch {
-                // If high-accuracy provider fails, try fallback
-                if provider.id == "gpsd", let fallbackProvider = providers[kCLLocationAccuracyHundredMeters] {
-                    do {
-                        let location = try await fallbackProvider.requestLocation()
-                        
-                        // Apply distance filter to fallback location too
-                        if shouldReportLocation(location) {
-                            updateLastReportedLocation(location)
-                            checkRegionBoundaries(for: location)
-                            delegate?.locationManagerService(self, didUpdateLocation: location)
-                        }
-                        return
-                    } catch {
-                        // Fallback also failed
-                    }
-                }
-                throw error
+            // Use the robust fallback mechanism
+            let location = try await requestLocationWithFallback(for: accuracy)
+            
+            // Apply distance filter before reporting location
+            if shouldReportLocation(location) {
+                updateLastReportedLocation(location)
+                checkRegionBoundaries(for: location)
+                delegate?.locationManagerService(self, didUpdateLocation: location)
             }
         } catch {
             delegate?.locationManagerService(self, didFailWithError: error)

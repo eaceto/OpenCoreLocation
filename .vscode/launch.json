@@ -71,6 +71,42 @@
             "name": "Release RegionMonitoringExample",
             "program": "${workspaceFolder:OpenCoreLocation}/.build/release/RegionMonitoringExample",
             "preLaunchTask": "swift: Build Release RegionMonitoringExample"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Debug ProviderFallbackTest",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/debug/ProviderFallbackTest",
+            "preLaunchTask": "swift: Build Debug ProviderFallbackTest"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Release ProviderFallbackTest",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/release/ProviderFallbackTest",
+            "preLaunchTask": "swift: Build Release ProviderFallbackTest"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Debug QuickFallbackTest",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/debug/QuickFallbackTest",
+            "preLaunchTask": "swift: Build Debug QuickFallbackTest"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:OpenCoreLocation}",
+            "name": "Release QuickFallbackTest",
+            "program": "${workspaceFolder:OpenCoreLocation}/.build/release/QuickFallbackTest",
+            "preLaunchTask": "swift: Build Release QuickFallbackTest"
         }
     ]
 }

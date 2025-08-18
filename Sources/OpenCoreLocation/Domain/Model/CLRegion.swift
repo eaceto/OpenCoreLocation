@@ -70,9 +70,22 @@ open class CLRegion: NSObject, NSCopying, NSSecureCoding {
     /// - Parameter coordinate: The coordinate to check.
     /// - Returns: A Boolean indicating if the coordinate is within the region's boundaries.
     public func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {
-        let distance = CLLocationDistance(
-            sqrt(pow(coordinate.latitude - center.latitude, 2) + pow(coordinate.longitude - center.longitude, 2)) * 111000
-        )
+        // Use haversine formula for accurate distance calculation
+        let lat1 = center.latitude * .pi / 180
+        let lon1 = center.longitude * .pi / 180
+        let lat2 = coordinate.latitude * .pi / 180
+        let lon2 = coordinate.longitude * .pi / 180
+        
+        let dLat = lat2 - lat1
+        let dLon = lon2 - lon1
+        
+        let a = sin(dLat / 2) * sin(dLat / 2) +
+                cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2)
+        
+        let c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        let R: CLLocationDistance = 6371000 // Earth radius in meters
+        
+        let distance = R * c
         return distance <= radius
     }
 

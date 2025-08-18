@@ -120,7 +120,7 @@ final class CLLocationManagerService {
             guard let lastLocation = lastReportedLocation else { return true }
             
             // Calculate distance between current and last reported location
-            let distance = calculateDistance(
+            let distance = CLLocationUtils.calculateDistance(
                 from: (latitude: lastLocation.latitude, longitude: lastLocation.longitude),
                 to: (latitude: newLocation.latitude, longitude: newLocation.longitude)
             )
@@ -138,28 +138,6 @@ final class CLLocationManagerService {
         }
     }
     
-    /// Calculates the great-circle distance between two coordinate points using the haversine formula
-    /// - Parameters:
-    ///   - from: Starting coordinate (latitude, longitude)
-    ///   - to: Ending coordinate (latitude, longitude)
-    /// - Returns: Distance in meters
-    private func calculateDistance(from: (latitude: Double, longitude: Double), to: (latitude: Double, longitude: Double)) -> CLLocationDistance {
-        let lat1 = from.latitude * .pi / 180
-        let lon1 = from.longitude * .pi / 180
-        let lat2 = to.latitude * .pi / 180
-        let lon2 = to.longitude * .pi / 180
-        
-        let dLat = lat2 - lat1
-        let dLon = lon2 - lon1
-        
-        let a = sin(dLat / 2) * sin(dLat / 2) +
-                cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2)
-        
-        let c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        let R: CLLocationDistance = 6371000 // Earth radius in meters
-        
-        return R * c
-    }
 
     // MARK: - One-Time Location Request
     /// Requests the user's location **once** (single update)

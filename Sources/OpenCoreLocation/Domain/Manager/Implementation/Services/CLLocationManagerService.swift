@@ -29,6 +29,11 @@ final class CLLocationManagerService {
     private var distanceFilter: CLLocationDistance = kCLDistanceFilterNone
     private var lastReportedLocation: SendableCLLocation?
     private let locationTrackingQueue = DispatchQueue(label: "com.opencorelocation.CLLocationManagerService.tracking", attributes: .concurrent)
+    
+    /// Region monitoring
+    private var monitoredRegions: Set<CLRegion> = []
+    private var regionStates: [String: CLRegionState] = [:]
+    private let regionMonitoringQueue = DispatchQueue(label: "com.opencorelocation.CLLocationManagerService.regions", attributes: .concurrent)
 
     // MARK: - Initializer
     init() {
@@ -163,6 +168,7 @@ final class CLLocationManagerService {
                 // Apply distance filter before reporting location
                 if shouldReportLocation(location) {
                     updateLastReportedLocation(location)
+                    checkRegionBoundaries(for: location)
                     delegate?.locationManagerService(self, didUpdateLocation: location)
                 }
                 // Note: Even if filtered, this is considered a successful location request
@@ -175,6 +181,7 @@ final class CLLocationManagerService {
                         // Apply distance filter to fallback location too
                         if shouldReportLocation(location) {
                             updateLastReportedLocation(location)
+                            checkRegionBoundaries(for: location)
                             delegate?.locationManagerService(self, didUpdateLocation: location)
                         }
                         return
@@ -222,10 +229,89 @@ final class CLLocationManagerService {
         // Reset distance filter tracking when stopping location updates
         resetDistanceFilter()
     }
+    
+    // MARK: - Region Monitoring
+    
+    /// Starts monitoring a region for entry and exit events
+    func startMonitoring(for region: CLRegion) {
+        regionMonitoringQueue.async(flags: .barrier) {
+            self.monitoredRegions.insert(region)
+            self.regionStates[region.identifier] = .unknown
+        }
+    }
+    
+    /// Stops monitoring a region
+    func stopMonitoring(for region: CLRegion) {
+        regionMonitoringQueue.async(flags: .barrier) {
+            self.monitoredRegions.remove(region)
+            self.regionStates.removeValue(forKey: region.identifier)
+        }
+    }
+    
+    /// Requests the current state of a region
+    func requestState(for region: CLRegion) {
+        guard let currentLocation = lastReportedLocation else {
+            // If no location available, can't determine state
+            delegate?.locationManagerService(self, didDetermineState: .unknown, for: region)
+            return
+        }
+        
+        let currentState = determineRegionState(for: region, at: currentLocation)
+        regionMonitoringQueue.async(flags: .barrier) {
+            self.regionStates[region.identifier] = currentState
+        }
+        delegate?.locationManagerService(self, didDetermineState: currentState, for: region)
+    }
+    
+    /// Determines the current state of a region based on location
+    private func determineRegionState(for region: CLRegion, at location: SendableCLLocation) -> CLRegionState {
+        let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        return region.contains(coordinate) ? .inside : .outside
+    }
+    
+    /// Checks all monitored regions for boundary crossings when location updates
+    private func checkRegionBoundaries(for newLocation: SendableCLLocation) {
+        regionMonitoringQueue.async { [weak self] in
+            guard let self = self else { return }
+            
+            
+            for region in self.monitoredRegions {
+                let previousState = self.regionStates[region.identifier] ?? .unknown
+                let currentState = self.determineRegionState(for: region, at: newLocation)
+                
+                // Update stored state
+                self.regionStates[region.identifier] = currentState
+                
+                // Check for state transitions and notify accordingly
+                if previousState != currentState && previousState != .unknown {
+                    switch (previousState, currentState) {
+                    case (.outside, .inside):
+                        if region.notifyOnEntry {
+                            DispatchQueue.main.async {
+                                self.delegate?.locationManagerService(self, didEnterRegion: region)
+                            }
+                        }
+                    case (.inside, .outside):
+                        if region.notifyOnExit {
+                            DispatchQueue.main.async {
+                                self.delegate?.locationManagerService(self, didExitRegion: region)
+                            }
+                        }
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: - CLLocationManagerServiceDelegate
 internal protocol CLLocationManagerServiceDelegate: AnyObject {
     func locationManagerService(_ service: CLLocationManagerService, didUpdateLocation location: SendableCLLocation)
     func locationManagerService(_ service: CLLocationManagerService, didFailWithError error: Error)
+    func locationManagerService(_ service: CLLocationManagerService, didEnterRegion region: CLRegion)
+    func locationManagerService(_ service: CLLocationManagerService, didExitRegion region: CLRegion)
+    func locationManagerService(_ service: CLLocationManagerService, didDetermineState state: CLRegionState, for region: CLRegion)
+    func locationManagerService(_ service: CLLocationManagerService, monitoringDidFailFor region: CLRegion?, withError error: Error)
 }

@@ -158,6 +158,11 @@ private class MockLocationServiceDelegate: CLLocationManagerServiceDelegate {
         errorExpectation?.fulfill()
     }
     
+    func locationManagerService(_ service: CLLocationManagerService, didEnterRegion region: CLRegion) {}
+    func locationManagerService(_ service: CLLocationManagerService, didExitRegion region: CLRegion) {}
+    func locationManagerService(_ service: CLLocationManagerService, didDetermineState state: CLRegionState, for region: CLRegion) {}
+    func locationManagerService(_ service: CLLocationManagerService, monitoringDidFailFor region: CLRegion?, withError error: Error) {}
+    
     func reset() {
         didReceiveLocation = false
         didReceiveError = false

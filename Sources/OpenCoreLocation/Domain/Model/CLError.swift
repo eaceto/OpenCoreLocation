@@ -14,6 +14,12 @@ public struct CLError: CustomNSError, Hashable, Error {
     public init(_nsError: NSError) {
         self._nsError = _nsError
     }
+    
+    /// Initializes `CLError` from a `CLError.Code`.
+    /// - Parameter code: The error code.
+    public init(_ code: CLError.Code) {
+        self._nsError = NSError(domain: CLError.errorDomain, code: code.rawValue, userInfo: nil)
+    }
 
     // MARK: - Error Domain
     /// The error domain for CoreLocation errors.

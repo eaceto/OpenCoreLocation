@@ -153,6 +153,46 @@ open class CLLocationManager: NSObject {
         // This is a no-op to maintain API compatibility
     }
 
+    // MARK: - Region Monitoring
+    /// Starts monitoring the specified region for entry and exit events.
+    /// 
+    /// - Parameter region: The region to monitor. Only CLCircularRegion is supported.
+    /// - Note: The region's `notifyOnEntry` and `notifyOnExit` properties determine which events are reported.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/startmonitoring(for:))
+    open func startMonitoring(for region: CLRegion) {
+        guard region is CLCircularRegion else {
+            delegate?.locationManager(self, monitoringDidFailFor: region, withError: CLError(.regionMonitoringFailure))
+            return
+        }
+        
+        guard CLLocationManager.isMonitoringAvailable(for: type(of: region)) else {
+            delegate?.locationManager(self, monitoringDidFailFor: region, withError: CLError(.regionMonitoringDenied))
+            return
+        }
+        
+        serviceImplementation.startMonitoring(for: region)
+        monitoredRegions.insert(region)
+        delegate?.locationManager(self, didStartMonitoringFor: region)
+    }
+    
+    /// Stops monitoring the specified region.
+    /// 
+    /// - Parameter region: The region to stop monitoring.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/stopmonitoring(for:))
+    open func stopMonitoring(for region: CLRegion) {
+        serviceImplementation.stopMonitoring(for: region)
+        monitoredRegions.remove(region)
+    }
+    
+    /// Requests the current state of the specified region.
+    /// 
+    /// - Parameter region: The region whose state you want to determine.
+    /// - Note: This method triggers the `locationManager(_:didDetermineState:for:)` delegate method.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/requeststate(for:))
+    open func requestState(for region: CLRegion) {
+        serviceImplementation.requestState(for: region)
+    }
+
     // MARK: - Service Availability
     /// Returns a Boolean value indicating whether location services are enabled on the device.
     open class func locationServicesEnabled() -> Bool {
@@ -180,11 +220,11 @@ open class CLLocationManager: NSObject {
     /// Returns a Boolean value indicating whether the device supports region monitoring using the specified class.
     /// 
     /// - Parameter regionClass: The class of region to check support for.
-    /// - Returns: Always returns `false` on Linux platforms as region monitoring requires OS-level support not available on Linux.
+    /// - Returns: Returns `true` for CLCircularRegion, `false` for other region types as only circular regions are supported in OpenCoreLocation.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/ismonitoringavailable(for:))
     open class func isMonitoringAvailable(for regionClass: AnyClass) -> Bool {
-        // Region monitoring requires OS-level geofencing support not available on Linux
-        return false
+        // OpenCoreLocation supports circular region monitoring through software implementation
+        return regionClass == CLCircularRegion.self
     }
 
     /// Returns a Boolean value indicating whether the device supports ranging of beacons that use the iBeacon protocol.
@@ -206,5 +246,21 @@ extension CLLocationManager: CLLocationManagerServiceDelegate {
 
     func locationManagerService(_ service: CLLocationManagerService, didFailWithError error: any Error) {
         delegate?.locationManager(self, didFailWithError: error)
+    }
+    
+    func locationManagerService(_ service: CLLocationManagerService, didEnterRegion region: CLRegion) {
+        delegate?.locationManager(self, didEnterRegion: region)
+    }
+    
+    func locationManagerService(_ service: CLLocationManagerService, didExitRegion region: CLRegion) {
+        delegate?.locationManager(self, didExitRegion: region)
+    }
+    
+    func locationManagerService(_ service: CLLocationManagerService, didDetermineState state: CLRegionState, for region: CLRegion) {
+        delegate?.locationManager(self, didDetermineState: state, for: region)
+    }
+    
+    func locationManagerService(_ service: CLLocationManagerService, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        delegate?.locationManager(self, monitoringDidFailFor: region, withError: error)
     }
 }

@@ -28,11 +28,43 @@ public protocol CLLocationManagerDelegate: AnyObject {
     ///   - newHeading: The new heading data.
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
 
-    /// Tells the delegate that the device’s location accuracy authorization changed.
+    /// Tells the delegate that the device's location accuracy authorization changed.
     /// - Parameters:
     ///   - manager: The location manager object reporting the change.
     ///   - accuracyAuthorization: The new accuracy authorization level.
     func locationManager(_ manager: CLLocationManager, didChangeAccuracyAuthorization accuracyAuthorization: CLAccuracyAuthorization)
+    
+    /// Tells the delegate that the user entered the specified region.
+    /// - Parameters:
+    ///   - manager: The location manager object that generated the event.
+    ///   - region: The region that was entered.
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion)
+    
+    /// Tells the delegate that the user left the specified region.
+    /// - Parameters:
+    ///   - manager: The location manager object that generated the event.
+    ///   - region: The region that was exited.
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion)
+    
+    /// Tells the delegate that a region monitoring error occurred.
+    /// - Parameters:
+    ///   - manager: The location manager object reporting the error.
+    ///   - region: The region for which monitoring failed.
+    ///   - error: An error object containing the reason for the failure.
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error)
+    
+    /// Tells the delegate that monitoring for a region started.
+    /// - Parameters:
+    ///   - manager: The location manager object that started monitoring the region.
+    ///   - region: The region that is now being monitored.
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion)
+    
+    /// Tells the delegate the state of the specified region.
+    /// - Parameters:
+    ///   - manager: The location manager object providing this update.
+    ///   - state: The state of the specified region.
+    ///   - region: The region whose state was determined.
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
 }
 
 // MARK: - Default Implementations
@@ -42,4 +74,9 @@ public extension CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {}
     func locationManager(_ manager: CLLocationManager, didChangeAccuracyAuthorization accuracyAuthorization: CLAccuracyAuthorization) {}
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {}
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {}
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {}
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {}
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {}
 }

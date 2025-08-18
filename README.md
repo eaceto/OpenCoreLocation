@@ -20,6 +20,13 @@ OpenCoreLocation is a comprehensive Swift package that brings Apple's **CoreLoca
 - **Thread-Safe Implementation**: Concurrent queue-based architecture for optimal performance
 - **Smart Caching**: Reduces redundant API calls and improves battery life
 
+### 🔍 **Region Monitoring & Geofencing**
+- **Circular Regions**: Monitor entry/exit events for geographic areas
+- **Software Geofencing**: Real-time boundary detection without hardware dependencies
+- **Selective Notifications**: Configure entry-only, exit-only, or both event types
+- **Multiple Region Support**: Monitor multiple regions simultaneously
+- **Background Monitoring**: Automatic region checking with location updates
+
 ### 🌍 **Comprehensive Geographic Utilities**
 - **CLLocationUtils**: Centralized geographic calculations and utilities
 - **Distance Calculations**: Accurate great-circle distance using haversine formula
@@ -35,21 +42,31 @@ OpenCoreLocation is a comprehensive Swift package that brings Apple's **CoreLoca
 
 OpenCoreLocation is production-ready with comprehensive testing and documentation. The library provides a robust, feature-complete implementation of CoreLocation APIs for Linux systems.
 
+### 🆕 Recent Updates (v1.1.0)
+- **✅ Real-time Region Monitoring**: Complete geofencing implementation with entry/exit callbacks
+- **✅ Enhanced Documentation**: Full API documentation with GitHub Pages deployment
+- **✅ Development Tools**: Makefile, automated testing, and CI/CD integration
+- **✅ Improved Testing**: 50+ test cases covering all major functionality
+- **✅ Geographic Utilities**: Centralized `CLLocationUtils` with distance/bearing calculations
+- **✅ Multi-provider Architecture**: Intelligent fallback system for GPS, WiFi, and IP providers
+
 ### ✅ Implemented Features
 - [x] **Core Location APIs**: `CLLocationManager`, `CLLocationManagerDelegate`, `CLLocation`
 - [x] **Geocoding**: `CLGeocoder` with OpenStreetMap integration  
-- [x] **Region Monitoring**: `CLRegion`, `CLCircularRegion` with accurate containment checks
+- [x] **Region Monitoring**: `CLRegion`, `CLCircularRegion` with real-time geofencing
 - [x] **Multi-Provider System**: GPS, WiFi, and IP-based location providers
 - [x] **Distance Filtering**: Intelligent location update filtering
 - [x] **Geographic Utilities**: `CLLocationUtils` with distance/bearing calculations
 - [x] **Cross-Platform**: Support for Linux, macOS, iOS, tvOS, and watchOS
-- [x] **Comprehensive Testing**: 40+ test cases with >90% code coverage
+- [x] **Comprehensive Testing**: 50+ test cases with >90% code coverage
+- [x] **Region Geofencing**: Entry/exit detection with delegate callbacks
+- [x] **Documentation System**: Complete API documentation with Jazzy integration
 
 ### 🚧 Future Enhancements
-- [ ] **Real-time Region Monitoring**: Active geofencing with delegate callbacks
 - [ ] **Visit Detection**: `CLVisit` for detecting significant locations
 - [ ] **Beacon Ranging**: iBeacon support for proximity detection
 - [ ] **Background Updates**: Persistent location tracking capabilities
+- [ ] **Region Monitoring on GPS Loss**: Fallback strategies for provider failures
 
 ## 📦 Installation
 
@@ -204,26 +221,100 @@ let isValid = CLLocationUtils.isValidCoordinate(latitude: 37.7749, longitude: -1
 print("✅ Valid coordinates: \(isValid)")
 ```
 
-### Region Monitoring
+### Region Monitoring & Geofencing
 
+#### Basic Region Setup
 ```swift
-// Create circular region
-let applepark = CLLocationCoordinate2D(latitude: 37.3317, longitude: -122.0302)
-let region = CLCircularRegion(center: applepark, radius: 1000, identifier: "Apple Park")
+// Create circular region for monitoring
+let center = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194) // San Francisco
+let region = CLCircularRegion(center: center, radius: 500.0, identifier: "downtown-sf")
 
-// Test if coordinate is inside region
-let testCoordinate = CLLocationCoordinate2D(latitude: 37.3350, longitude: -122.0300)
-let isInside = region.contains(testCoordinate)
-print("📍 Inside Apple Park region: \(isInside)")
+// Configure notifications
+region.notifyOnEntry = true   // Get notified when entering region
+region.notifyOnExit = true    // Get notified when exiting region
+
+// Test coordinate containment
+let testPoint = CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195)
+let isInside = region.contains(testPoint)
+print("📍 Point inside region: \(isInside)")
+```
+
+#### Real-time Geofencing
+```swift
+extension LocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("🎯 Entered region: \(region.identifier)")
+        // Trigger entry actions (notifications, data sync, etc.)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("🚪 Exited region: \(region.identifier)")  
+        // Trigger exit actions (cleanup, notifications, etc.)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        switch state {
+        case .inside:
+            print("📍 Currently inside: \(region.identifier)")
+        case .outside:
+            print("🌍 Currently outside: \(region.identifier)")
+        case .unknown:
+            print("❓ Region state unknown: \(region.identifier)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        print("👀 Started monitoring: \(region.identifier)")
+        // Request initial state
+        manager.requestState(for: region)
+    }
+}
+
+// Start monitoring regions
+locationManager.startMonitoring(for: region)
+
+// Query current region state
+locationManager.requestState(for: region)
+
+// Stop monitoring when done
+locationManager.stopMonitoring(for: region)
+```
+
+#### Multiple Region Management
+```swift
+// Monitor multiple regions simultaneously
+let regions = [
+    CLCircularRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), 
+                    radius: 500.0, identifier: "downtown-sf"),
+    CLCircularRegion(center: CLLocationCoordinate2D(latitude: 37.7849, longitude: -122.4094), 
+                    radius: 200.0, identifier: "office"),
+    CLCircularRegion(center: CLLocationCoordinate2D(latitude: 37.7649, longitude: -122.4394), 
+                    radius: 100.0, identifier: "home")
+]
+
+regions.forEach { region in
+    region.notifyOnEntry = true
+    region.notifyOnExit = true
+    locationManager.startMonitoring(for: region)
+}
+
+print("📍 Monitoring \(locationManager.monitoredRegions.count) regions")
 ```
 
 ## 📊 Accuracy Comparison
 
 | Provider | Accuracy | Update Interval | Use Case | Linux Requirements |
 |----------|----------|----------------|----------|-------------------|
-| **GPS** | 1-10m | 1 second | Navigation, fitness tracking | gpsd + GPS hardware |
-| **WiFi** | 20-100m | 30 seconds | General location services | WiFi networks |
-| **IP** | 500m-5km | 30 seconds | Regional services, weather | Internet connection |
+| **GPS** | 1-10m | 1 second | Navigation, fitness tracking, precise geofencing | gpsd + GPS hardware |
+| **WiFi** | 20-100m | 30 seconds | General location services, urban geofencing | WiFi networks |
+| **IP** | 500m-5km | 30 seconds | Regional services, weather, city-level geofencing | Internet connection |
+
+### Geofencing Capabilities
+- **Region Radius**: 10m - 100km (software-configurable)
+- **Entry/Exit Detection**: Real-time boundary crossing detection
+- **Multiple Regions**: Monitor up to 20 regions simultaneously  
+- **Background Monitoring**: Automatic checking with location updates
+- **Accuracy**: Depends on underlying location provider (GPS: ±5m, WiFi: ±50m, IP: ±1km)
 
 ## 🧪 Testing
 
@@ -237,6 +328,7 @@ swift test
 swift test --filter CLLocationManagerTests
 swift test --filter CLLocationUtilsTests
 swift test --filter CLCircularRegionTests
+swift test --filter CLLocationManagerRegionMonitoringTests
 
 # Run with verbose output
 swift test --verbose
@@ -248,18 +340,34 @@ swift test --verbose
 Comprehensive API documentation is available in the `/docs` directory, generated using Jazzy:
 
 ```bash
-# Generate documentation
-jazzy --clean --build-tool-arguments -Xswiftc,-swift-version,-Xswiftc,5.7
+# Generate documentation locally
+make docs
+
+# Or use the build script directly  
+./scripts/generate-docs.sh
 
 # View documentation
 open docs/index.html
 ```
 
+**Online Documentation**: [https://eaceto.github.io/OpenCoreLocation](https://eaceto.github.io/OpenCoreLocation)
+
 ### Example Projects
-Check the `/Examples` directory for demonstration code:
-- `LocationAccuracyExample.swift`: Multi-provider accuracy demonstration
-- `DistanceFilterDemo.swift`: Distance filtering examples  
-- `LocationUtilsDemo.swift`: Geographic utilities showcase
+Check the `/Examples` directory for complete demonstration code:
+
+- **`LocationAccuracyExample.swift`**: Multi-provider accuracy system demonstration
+- **`DistanceFilterDemo.swift`**: Distance filtering and battery optimization examples  
+- **`LocationUtilsDemo.swift`**: Geographic utilities and calculations showcase
+- **`RegionMonitoringExample.swift`**: Complete geofencing implementation with entry/exit detection
+
+#### Running Examples
+```bash
+# Copy example to your project or run with Swift
+swift Examples/RegionMonitoringExample.swift
+
+# Or integrate into your existing project
+cp Examples/RegionMonitoringExample.swift Sources/YourApp/
+```
 
 ## 🔄 Cross-Platform Usage
 
@@ -287,9 +395,28 @@ Contributions are welcome! Please see our [Contributing Guidelines](CONTRIBUTING
 ```bash
 git clone https://github.com/eaceto/OpenCoreLocation.git
 cd OpenCoreLocation
+
+# Build and test
 swift build
 swift test
+
+# Use convenient make commands
+make help          # Show all available commands
+make build         # Build the project
+make test          # Run tests
+make docs          # Generate documentation
+make clean         # Clean build artifacts
+make dev           # Full development workflow
 ```
+
+### Development Tools
+The project includes several convenient development tools:
+
+- **Makefile**: Convenient build commands and development workflows
+- **Documentation Generator**: Automated Jazzy documentation with GitHub Pages deployment  
+- **GitHub Actions**: Automated testing and documentation deployment
+- **Test Coverage**: Comprehensive test suite with >90% code coverage
+- **Code Quality**: Integrated linting and formatting tools
 
 ## 📄 License
 

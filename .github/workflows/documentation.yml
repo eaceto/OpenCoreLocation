@@ -2,14 +2,26 @@ name: Generate Documentation
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - '*'
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   docs:
     runs-on: macos-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
     - name: Checkout
@@ -22,16 +34,10 @@ jobs:
       with:
         swift-version: "6.0"
     
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-        bundler-cache: false
-    
-    - name: Install Jazzy
+    - name: Install Jazzy via Homebrew
       run: |
-        echo "Installing Jazzy..."
-        sudo gem install jazzy
+        echo "Installing Jazzy via Homebrew..."
+        brew install jazzy
         jazzy --version
       
     - name: Make scripts executable
@@ -59,10 +65,23 @@ jobs:
         name: documentation
         path: docs/
         
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Setup Pages
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'
+      uses: actions/configure-pages@v3
+      
+    - name: Add .nojekyll file
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'
+      run: |
+        echo "Adding .nojekyll file to disable Jekyll processing..."
+        touch docs/.nojekyll
+        
+    - name: Upload to GitHub Pages
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'
+      uses: actions/upload-pages-artifact@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-        force_orphan: true
+        path: ./docs
+        
+    - name: Deploy to GitHub Pages
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'
+      id: deployment
+      uses: actions/deploy-pages@v2

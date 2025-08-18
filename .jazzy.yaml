@@ -1,4 +1,5 @@
 # Jazzy configuration for OpenCoreLocation
+# Version will be dynamically set by generate-docs.sh script
 
 module: OpenCoreLocation
 author: Ezequiel (Kimi) Aceto

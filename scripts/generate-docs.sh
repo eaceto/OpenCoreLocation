@@ -74,13 +74,26 @@ fi
 echo "✅ Project built successfully"
 echo ""
 
+# Auto-detect version from git tags
+echo "🔍 Detecting version information..."
+VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+if [[ -z "$VERSION" ]]; then
+    # Fallback to git commit hash if no tags
+    COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "dev")
+    VERSION="dev-${COMMIT_HASH}"
+    echo "   No git tags found, using commit-based version: $VERSION"
+else
+    echo "   Using latest git tag: $VERSION"
+fi
+
 # Generate documentation
 echo "📚 Generating API documentation..."
 echo "Using Jazzy configuration: .jazzy.yaml"
+echo "Documentation version: $VERSION"
 echo ""
 
-# Run Jazzy with our configuration
-if jazzy --config .jazzy.yaml; then
+# Run Jazzy with our configuration and dynamic version
+if jazzy --config .jazzy.yaml --module-version "$VERSION"; then
     echo ""
     echo "🎉 Documentation generated successfully!"
     echo ""

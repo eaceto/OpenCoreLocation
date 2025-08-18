@@ -64,7 +64,7 @@ The project maintains >90% code coverage across:
 
 ### API Documentation
 
-Comprehensive API documentation is generated using Jazzy:
+Comprehensive API documentation is generated using Jazzy with automatic version detection:
 
 ```bash
 # Generate documentation locally
@@ -76,6 +76,8 @@ make docs
 # View documentation
 open docs/index.html
 ```
+
+**Version Detection**: The documentation system automatically detects and uses the latest git tag as the version number. If no tags are available, it falls back to a commit-based version (e.g., `dev-5decab3`).
 
 **Online Documentation**: [https://eaceto.github.io/OpenCoreLocation](https://eaceto.github.io/OpenCoreLocation)
 
@@ -191,6 +193,7 @@ This ensures Apple CoreLocation-compatible behavior on Linux systems.
 1. **GPS Provider Failures**: Expected on systems without gpsd - fallback should work
 2. **Network Timeouts**: IP/WiFi providers may timeout on slow connections
 3. **Permission Issues**: Some tests may require network access permissions
+4. **SPM Build Warnings**: Swift Package Manager shows warnings about "unhandled files" in the Examples directory. This is a known SPM limitation when using executable targets that reference files in a shared directory. The warnings are harmless - all builds succeed and examples work correctly as separate executable targets.
 
 ### Debug Examples
 

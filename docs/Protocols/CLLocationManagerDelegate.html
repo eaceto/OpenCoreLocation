@@ -537,7 +537,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Tells the delegate that the device’s location accuracy authorization changed.</p>
+                        <p>Tells the delegate that the device&rsquo;s location accuracy authorization changed.</p>
 
                       </div>
                       <h4>Default Implementation</h4>
@@ -577,6 +577,355 @@
                               <td>
                                 <div>
                                   <p>The new accuracy authorization level.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_14didEnterRegionyAA0dE0C_AA8CLRegionCtF"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didEnterRegion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_14didEnterRegionyAA0dE0C_AA8CLRegionCtF">locationManager(_:<wbr>didEnterRegion:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate that the user entered the specified region.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLLocationManager.html">CLLocationManager</a></span><span class="p">,</span> <span class="n">didEnterRegion</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location manager object that generated the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region that was entered.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_13didExitRegionyAA0dE0C_AA8CLRegionCtF"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didExitRegion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_13didExitRegionyAA0dE0C_AA8CLRegionCtF">locationManager(_:<wbr>didExitRegion:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate that the user left the specified region.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLLocationManager.html">CLLocationManager</a></span><span class="p">,</span> <span class="n">didExitRegion</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location manager object that generated the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region that was exited.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_20monitoringDidFailFor9withErroryAA0dE0C_AA8CLRegionCSgs0M0_ptF"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:monitoringDidFailFor:withError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_20monitoringDidFailFor9withErroryAA0dE0C_AA8CLRegionCSgs0M0_ptF">locationManager(_:<wbr>monitoringDidFailFor:<wbr>withError:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate that a region monitoring error occurred.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLLocationManager.html">CLLocationManager</a></span><span class="p">,</span> <span class="n">monitoringDidFailFor</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">?,</span> <span class="n">withError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location manager object reporting the error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region for which monitoring failed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An error object containing the reason for the failure.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_21didStartMonitoringForyAA0dE0C_AA8CLRegionCtF"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didStartMonitoringFor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_21didStartMonitoringForyAA0dE0C_AA8CLRegionCtF">locationManager(_:<wbr>didStartMonitoringFor:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate that monitoring for a region started.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLLocationManager.html">CLLocationManager</a></span><span class="p">,</span> <span class="n">didStartMonitoringFor</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location manager object that started monitoring the region.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region that is now being monitored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_17didDetermineState3foryAA0dE0C_AA08CLRegionJ0OAA0L0CtF"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didDetermineState:for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation25CLLocationManagerDelegateP08locationE0_17didDetermineState3foryAA0dE0C_AA08CLRegionJ0OAA0L0CtF">locationManager(_:<wbr>didDetermineState:<wbr>for:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate the state of the specified region.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLLocationManager.html">CLLocationManager</a></span><span class="p">,</span> <span class="n">didDetermineState</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLRegionState.html">CLRegionState</a></span><span class="p">,</span> <span class="k">for</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location manager object providing this update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The state of the specified region.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region whose state was determined.</p>
                                 </div>
                               </td>
                             </tr>

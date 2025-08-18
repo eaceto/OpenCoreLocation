@@ -263,6 +263,15 @@
 <li><strong>Thread-Safe Implementation</strong>: Concurrent queue-based architecture for optimal performance</li>
 <li><strong>Smart Caching</strong>: Reduces redundant API calls and improves battery life</li>
 </ul>
+<h3 id='strong-region-monitoring-amp-geofencing-strong' class='heading'>🔍 <strong>Region Monitoring &amp; Geofencing</strong></h3>
+
+<ul>
+<li><strong>Circular Regions</strong>: Monitor entry/exit events for geographic areas</li>
+<li><strong>Software Geofencing</strong>: Real-time boundary detection without hardware dependencies</li>
+<li><strong>Selective Notifications</strong>: Configure entry-only, exit-only, or both event types</li>
+<li><strong>Multiple Region Support</strong>: Monitor multiple regions simultaneously</li>
+<li><strong>Background Monitoring</strong>: Automatic region checking with location updates</li>
+</ul>
 <h3 id='strong-comprehensive-geographic-utilities-strong' class='heading'>🌍 <strong>Comprehensive Geographic Utilities</strong></h3>
 
 <ul>
@@ -281,25 +290,37 @@
 <h2 id='️-project-status' class='heading'>🏗️ Project Status</h2>
 
 <p>OpenCoreLocation is production-ready with comprehensive testing and documentation. The library provides a robust, feature-complete implementation of CoreLocation APIs for Linux systems.</p>
+<h3 id='recent-updates-v1-1-0' class='heading'>🆕 Recent Updates (v1.1.0)</h3>
+
+<ul>
+<li><strong>✅ Real-time Region Monitoring</strong>: Complete geofencing implementation with entry/exit callbacks</li>
+<li><strong>✅ Enhanced Documentation</strong>: Full API documentation with GitHub Pages deployment</li>
+<li><strong>✅ Development Tools</strong>: Makefile, automated testing, and CI/CD integration</li>
+<li><strong>✅ Improved Testing</strong>: 50+ test cases covering all major functionality</li>
+<li><strong>✅ Geographic Utilities</strong>: Centralized <code><a href="Classes/CLLocationUtils.html">CLLocationUtils</a></code> with distance/bearing calculations</li>
+<li><strong>✅ Multi-provider Architecture</strong>: Intelligent fallback system for GPS, WiFi, and IP providers</li>
+</ul>
 <h3 id='implemented-features' class='heading'>✅ Implemented Features</h3>
 
 <ul>
 <li>[x] <strong>Core Location APIs</strong>: <code><a href="Classes/CLLocationManager.html">CLLocationManager</a></code>, <code><a href="Protocols/CLLocationManagerDelegate.html">CLLocationManagerDelegate</a></code>, <code><a href="Classes/CLLocation.html">CLLocation</a></code></li>
 <li>[x] <strong>Geocoding</strong>: <code><a href="Classes/CLGeocoder.html">CLGeocoder</a></code> with OpenStreetMap integration<br></li>
-<li>[x] <strong>Region Monitoring</strong>: <code><a href="Classes/CLRegion.html">CLRegion</a></code>, <code><a href="Classes/CLCircularRegion.html">CLCircularRegion</a></code> with accurate containment checks</li>
+<li>[x] <strong>Region Monitoring</strong>: <code><a href="Classes/CLRegion.html">CLRegion</a></code>, <code><a href="Classes/CLCircularRegion.html">CLCircularRegion</a></code> with real-time geofencing</li>
 <li>[x] <strong>Multi-Provider System</strong>: GPS, WiFi, and IP-based location providers</li>
 <li>[x] <strong>Distance Filtering</strong>: Intelligent location update filtering</li>
 <li>[x] <strong>Geographic Utilities</strong>: <code><a href="Classes/CLLocationUtils.html">CLLocationUtils</a></code> with distance/bearing calculations</li>
 <li>[x] <strong>Cross-Platform</strong>: Support for Linux, macOS, iOS, tvOS, and watchOS</li>
-<li>[x] <strong>Comprehensive Testing</strong>: 40+ test cases with &gt;90% code coverage</li>
+<li>[x] <strong>Comprehensive Testing</strong>: 50+ test cases with &gt;90% code coverage</li>
+<li>[x] <strong>Region Geofencing</strong>: Entry/exit detection with delegate callbacks</li>
+<li>[x] <strong>Documentation System</strong>: Complete API documentation with Jazzy integration</li>
 </ul>
 <h3 id='future-enhancements' class='heading'>🚧 Future Enhancements</h3>
 
 <ul>
-<li>[ ] <strong>Real-time Region Monitoring</strong>: Active geofencing with delegate callbacks</li>
 <li>[ ] <strong>Visit Detection</strong>: <code>CLVisit</code> for detecting significant locations</li>
 <li>[ ] <strong>Beacon Ranging</strong>: iBeacon support for proximity detection</li>
 <li>[ ] <strong>Background Updates</strong>: Persistent location tracking capabilities</li>
+<li>[ ] <strong>Region Monitoring on GPS Loss</strong>: Fallback strategies for provider failures</li>
 </ul>
 <h2 id='installation' class='heading'>📦 Installation</h2>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
@@ -436,15 +457,78 @@
 <span class="k">let</span> <span class="nv">isValid</span> <span class="o">=</span> <span class="kt">CLLocationUtils</span><span class="o">.</span><span class="nf">isValidCoordinate</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.7749</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.4194</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">"✅ Valid coordinates: </span><span class="se">\(</span><span class="n">isValid</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 </code></pre>
-<h3 id='region-monitoring' class='heading'>Region Monitoring</h3>
-<pre class="highlight swift"><code><span class="c1">// Create circular region</span>
-<span class="k">let</span> <span class="nv">applepark</span> <span class="o">=</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.3317</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.0302</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">region</span> <span class="o">=</span> <span class="kt">CLCircularRegion</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="n">applepark</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="nv">identifier</span><span class="p">:</span> <span class="s">"Apple Park"</span><span class="p">)</span>
+<h3 id='region-monitoring-amp-geofencing' class='heading'>Region Monitoring &amp; Geofencing</h3>
+<h4 id='basic-region-setup' class='heading'>Basic Region Setup</h4>
+<pre class="highlight swift"><code><span class="c1">// Create circular region for monitoring</span>
+<span class="k">let</span> <span class="nv">center</span> <span class="o">=</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.7749</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.4194</span><span class="p">)</span> <span class="c1">// San Francisco</span>
+<span class="k">let</span> <span class="nv">region</span> <span class="o">=</span> <span class="kt">CLCircularRegion</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="n">center</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span> <span class="nv">identifier</span><span class="p">:</span> <span class="s">"downtown-sf"</span><span class="p">)</span>
 
-<span class="c1">// Test if coordinate is inside region</span>
-<span class="k">let</span> <span class="nv">testCoordinate</span> <span class="o">=</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.3350</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.0300</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">isInside</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="n">testCoordinate</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">"📍 Inside Apple Park region: </span><span class="se">\(</span><span class="n">isInside</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="c1">// Configure notifications</span>
+<span class="n">region</span><span class="o">.</span><span class="n">notifyOnEntry</span> <span class="o">=</span> <span class="kc">true</span>   <span class="c1">// Get notified when entering region</span>
+<span class="n">region</span><span class="o">.</span><span class="n">notifyOnExit</span> <span class="o">=</span> <span class="kc">true</span>    <span class="c1">// Get notified when exiting region</span>
+
+<span class="c1">// Test coordinate containment</span>
+<span class="k">let</span> <span class="nv">testPoint</span> <span class="o">=</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.7750</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.4195</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">isInside</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="n">testPoint</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"📍 Point inside region: </span><span class="se">\(</span><span class="n">isInside</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+</code></pre>
+<h4 id='real-time-geofencing' class='heading'>Real-time Geofencing</h4>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">LocationManagerDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didEnterRegion</span> <span class="nv">region</span><span class="p">:</span> <span class="kt">CLRegion</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"🎯 Entered region: </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">identifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="c1">// Trigger entry actions (notifications, data sync, etc.)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didExitRegion</span> <span class="nv">region</span><span class="p">:</span> <span class="kt">CLRegion</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"🚪 Exited region: </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">identifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>  
+        <span class="c1">// Trigger exit actions (cleanup, notifications, etc.)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didDetermineState</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">CLRegionState</span><span class="p">,</span> <span class="k">for</span> <span class="nv">region</span><span class="p">:</span> <span class="kt">CLRegion</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">inside</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"📍 Currently inside: </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">identifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">outside</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"🌍 Currently outside: </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">identifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">unknown</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"❓ Region state unknown: </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">identifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didStartMonitoringFor</span> <span class="nv">region</span><span class="p">:</span> <span class="kt">CLRegion</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"👀 Started monitoring: </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">identifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="c1">// Request initial state</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">requestState</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">region</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Start monitoring regions</span>
+<span class="n">locationManager</span><span class="o">.</span><span class="nf">startMonitoring</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">region</span><span class="p">)</span>
+
+<span class="c1">// Query current region state</span>
+<span class="n">locationManager</span><span class="o">.</span><span class="nf">requestState</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">region</span><span class="p">)</span>
+
+<span class="c1">// Stop monitoring when done</span>
+<span class="n">locationManager</span><span class="o">.</span><span class="nf">stopMonitoring</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">region</span><span class="p">)</span>
+</code></pre>
+<h4 id='multiple-region-management' class='heading'>Multiple Region Management</h4>
+<pre class="highlight swift"><code><span class="c1">// Monitor multiple regions simultaneously</span>
+<span class="k">let</span> <span class="nv">regions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="kt">CLCircularRegion</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.7749</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.4194</span><span class="p">),</span> 
+                    <span class="nv">radius</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span> <span class="nv">identifier</span><span class="p">:</span> <span class="s">"downtown-sf"</span><span class="p">),</span>
+    <span class="kt">CLCircularRegion</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.7849</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.4094</span><span class="p">),</span> 
+                    <span class="nv">radius</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">,</span> <span class="nv">identifier</span><span class="p">:</span> <span class="s">"office"</span><span class="p">),</span>
+    <span class="kt">CLCircularRegion</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.7649</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.4394</span><span class="p">),</span> 
+                    <span class="nv">radius</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span> <span class="nv">identifier</span><span class="p">:</span> <span class="s">"home"</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">regions</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">region</span> <span class="k">in</span>
+    <span class="n">region</span><span class="o">.</span><span class="n">notifyOnEntry</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="n">region</span><span class="o">.</span><span class="n">notifyOnExit</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="n">locationManager</span><span class="o">.</span><span class="nf">startMonitoring</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">region</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">"📍 Monitoring </span><span class="se">\(</span><span class="n">locationManager</span><span class="o">.</span><span class="n">monitoredRegions</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> regions"</span><span class="p">)</span>
 </code></pre>
 <h2 id='accuracy-comparison' class='heading'>📊 Accuracy Comparison</h2>
 
@@ -461,57 +545,54 @@
 <td><strong>GPS</strong></td>
 <td>1-10m</td>
 <td>1 second</td>
-<td>Navigation, fitness tracking</td>
+<td>Navigation, fitness tracking, precise geofencing</td>
 <td>gpsd + GPS hardware</td>
 </tr>
 <tr>
 <td><strong>WiFi</strong></td>
 <td>20-100m</td>
 <td>30 seconds</td>
-<td>General location services</td>
+<td>General location services, urban geofencing</td>
 <td>WiFi networks</td>
 </tr>
 <tr>
 <td><strong>IP</strong></td>
 <td>500m-5km</td>
 <td>30 seconds</td>
-<td>Regional services, weather</td>
+<td>Regional services, weather, city-level geofencing</td>
 <td>Internet connection</td>
 </tr>
 </tbody></table>
-<h2 id='testing' class='heading'>🧪 Testing</h2>
-
-<p>Run the comprehensive test suite:</p>
-<pre class="highlight shell"><code><span class="c"># Run all tests</span>
-swift <span class="nb">test</span>
-
-<span class="c"># Run specific test suites</span>
-swift <span class="nb">test</span> <span class="nt">--filter</span> CLLocationManagerTests
-swift <span class="nb">test</span> <span class="nt">--filter</span> CLLocationUtilsTests
-swift <span class="nb">test</span> <span class="nt">--filter</span> CLCircularRegionTests
-
-<span class="c"># Run with verbose output</span>
-swift <span class="nb">test</span> <span class="nt">--verbose</span>
-</code></pre>
-<h2 id='documentation' class='heading'>📚 Documentation</h2>
-<h3 id='api-documentation' class='heading'>API Documentation</h3>
-
-<p>Comprehensive API documentation is available in the <code>/docs</code> directory, generated using Jazzy:</p>
-<pre class="highlight shell"><code><span class="c"># Generate documentation</span>
-jazzy <span class="nt">--clean</span> <span class="nt">--build-tool-arguments</span> <span class="nt">-Xswiftc</span>,-swift-version,-Xswiftc,5.7
-
-<span class="c"># View documentation</span>
-open docs/index.html
-</code></pre>
-<h3 id='example-projects' class='heading'>Example Projects</h3>
-
-<p>Check the <code>/Examples</code> directory for demonstration code:</p>
+<h3 id='geofencing-capabilities' class='heading'>Geofencing Capabilities</h3>
 
 <ul>
-<li><code>LocationAccuracyExample.swift</code>: Multi-provider accuracy demonstration</li>
-<li><code>DistanceFilterDemo.swift</code>: Distance filtering examples<br></li>
-<li><code>LocationUtilsDemo.swift</code>: Geographic utilities showcase</li>
+<li><strong>Region Radius</strong>: 10m - 100km (software-configurable)</li>
+<li><strong>Entry/Exit Detection</strong>: Real-time boundary crossing detection</li>
+<li><strong>Multiple Regions</strong>: Monitor up to 20 regions simultaneously<br></li>
+<li><strong>Background Monitoring</strong>: Automatic checking with location updates</li>
+<li><strong>Accuracy</strong>: Depends on underlying location provider (GPS: ±5m, WiFi: ±50m, IP: ±1km)</li>
 </ul>
+<h2 id='documentation-amp-examples' class='heading'>📚 Documentation &amp; Examples</h2>
+<h3 id='api-documentation' class='heading'>API Documentation</h3>
+
+<p><strong>Online Documentation</strong>: <a href="https://eaceto.github.io/OpenCoreLocation">https://eaceto.github.io/OpenCoreLocation</a></p>
+<h3 id='example-projects' class='heading'>Example Projects</h3>
+
+<p>The <code>/Examples</code> directory contains demonstration code for all major features:</p>
+
+<ul>
+<li><strong><code>LocationAccuracyExample.swift</code></strong>: Multi-provider accuracy system demonstration</li>
+<li><strong><code>DistanceFilterDemo.swift</code></strong>: Distance filtering and battery optimization examples<br></li>
+<li><strong><code>LocationUtilsDemo.swift</code></strong>: Geographic utilities and calculations showcase</li>
+<li><strong><code>RegionMonitoringExample.swift</code></strong>: Complete geofencing implementation with entry/exit detection</li>
+</ul>
+<h4 id='running-examples' class='heading'>Running Examples</h4>
+<pre class="highlight shell"><code><span class="c"># Run examples using Swift Package Manager</span>
+swift run LocationAccuracyExample     <span class="c"># Multi-provider accuracy testing</span>
+swift run DistanceFilterDemo          <span class="c"># Distance filtering demonstration  </span>
+swift run LocationUtilsDemo           <span class="c"># Geographic utilities showcase</span>
+swift run RegionMonitoringExample     <span class="c"># Interactive region monitoring demo</span>
+</code></pre>
 <h2 id='cross-platform-usage' class='heading'>🔄 Cross-Platform Usage</h2>
 
 <p>OpenCoreLocation maintains full API compatibility with Apple&rsquo;s CoreLocation:</p>
@@ -529,13 +610,9 @@ open docs/index.html
 </code></pre>
 <h2 id='contributing' class='heading'>🤝 Contributing</h2>
 
-<p>Contributions are welcome! Please see our <a href="CONTRIBUTING.md">Contributing Guidelines</a> for details.</p>
-<h3 id='development-setup' class='heading'>Development Setup</h3>
-<pre class="highlight shell"><code>git clone https://github.com/eaceto/OpenCoreLocation.git
-<span class="nb">cd </span>OpenCoreLocation
-swift build
-swift <span class="nb">test</span>
-</code></pre>
+<p>Contributions are welcome! For development setup, testing, and contribution guidelines, see:</p>
+
+<p><strong>👨‍💻 <a href="README-DEVS.md">Developer Documentation</a></strong> - Complete guide for contributors and maintainers</p>
 <h2 id='license' class='heading'>📄 License</h2>
 
 <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>

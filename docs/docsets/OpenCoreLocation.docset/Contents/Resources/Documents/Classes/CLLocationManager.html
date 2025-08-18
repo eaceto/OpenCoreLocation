@@ -1083,6 +1083,170 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Region%20Monitoring"></a>
+                <a name="//apple_ref/swift/Section/Region Monitoring" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Region%20Monitoring"></a>
+                  <h3 class="section-name"><span>Region Monitoring</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC15startMonitoring3foryAA8CLRegionC_tF"></a>
+                    <a name="//apple_ref/swift/Method/startMonitoring(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC15startMonitoring3foryAA8CLRegionC_tF">startMonitoring(for:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts monitoring the specified region for entry and exit events.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    The region&rsquo;s <code>notifyOnEntry</code> and <code>notifyOnExit</code> properties determine which events are reported.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/startmonitoring(for:)">Apple Documentation</a>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">startMonitoring</span><span class="p">(</span><span class="k">for</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region to monitor. Only CLCircularRegion is supported.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC14stopMonitoring3foryAA8CLRegionC_tF"></a>
+                    <a name="//apple_ref/swift/Method/stopMonitoring(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC14stopMonitoring3foryAA8CLRegionC_tF">stopMonitoring(for:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stops monitoring the specified region.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">stopMonitoring</span><span class="p">(</span><span class="k">for</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region to stop monitoring.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/stopmonitoring(for:)">Apple Documentation</a></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16OpenCoreLocation17CLLocationManagerC12requestState3foryAA8CLRegionC_tF"></a>
+                    <a name="//apple_ref/swift/Method/requestState(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16OpenCoreLocation17CLLocationManagerC12requestState3foryAA8CLRegionC_tF">requestState(for:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Requests the current state of the specified region.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This method triggers the <code>locationManager(_:didDetermineState:for:)</code> delegate method.
+<a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/requeststate(for:)">Apple Documentation</a>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">requestState</span><span class="p">(</span><span class="k">for</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/CLRegion.html">CLRegion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The region whose state you want to determine.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Service%20Availability"></a>
                 <a name="//apple_ref/swift/Section/Service Availability" class="dashAnchor"></a>
                 <div class="section-name-container">
@@ -1228,7 +1392,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>Always returns <code>false</code> on Linux platforms as region monitoring requires OS-level support not available on Linux.
+                        <p>Returns <code>true</code> for CLCircularRegion, <code>false</code> for other region types as only circular regions are supported in OpenCoreLocation.
 <a href="https://developer.apple.com/documentation/corelocation/cllocationmanager/ismonitoringavailable(for:)">Apple Documentation</a></p>
                       </div>
                     </section>

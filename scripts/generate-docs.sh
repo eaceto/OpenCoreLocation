@@ -2,6 +2,14 @@
 
 # Generate Documentation Script for OpenCoreLocation
 # This script installs Jazzy (if needed) and generates comprehensive API documentation
+#
+# Usage:
+#   ./scripts/generate-docs.sh [version]
+#
+# Examples:
+#   ./scripts/generate-docs.sh          # Auto-detect version from git tags
+#   ./scripts/generate-docs.sh 1.2.0    # Use specific version
+#   ./scripts/generate-docs.sh dev      # Use 'dev' as version
 
 set -e  # Exit on any error
 
@@ -74,16 +82,22 @@ fi
 echo "✅ Project built successfully"
 echo ""
 
-# Auto-detect version from git tags
-echo "🔍 Detecting version information..."
-VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-if [[ -z "$VERSION" ]]; then
-    # Fallback to git commit hash if no tags
-    COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "dev")
-    VERSION="dev-${COMMIT_HASH}"
-    echo "   No git tags found, using commit-based version: $VERSION"
+# Version detection - use parameter or auto-detect
+echo "🔍 Determining version..."
+if [[ -n "$1" ]]; then
+    VERSION="$1"
+    echo "   Using provided version: $VERSION"
 else
-    echo "   Using latest git tag: $VERSION"
+    # Auto-detect version from git tags
+    VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+    if [[ -z "$VERSION" ]]; then
+        # Fallback to git commit hash if no tags
+        COMMIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "dev")
+        VERSION="dev-${COMMIT_HASH}"
+        echo "   No version provided or git tags found, using commit-based version: $VERSION"
+    else
+        echo "   No version provided, using latest git tag: $VERSION"
+    fi
 fi
 
 # Generate documentation

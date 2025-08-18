@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -39,7 +39,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "OpenCoreLocation"),
+            name: "OpenCoreLocation",
+            swiftSettings: [
+                .unsafeFlags(["-Xfrontend", "-disable-new-operator-lookup"]),
+                .swiftLanguageMode(.v5)
+            ]),
         .testTarget(
             name: "OpenCoreLocationTests",
             dependencies: ["OpenCoreLocation"]

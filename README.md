@@ -1,6 +1,6 @@
 # OpenCoreLocation
 
-[![Swift](https://img.shields.io/badge/Swift-5.7+-orange.svg)](https://swift.org)
+[![Swift](https://img.shields.io/badge/Swift-6.0+-orange.svg)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/Platforms-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-blue.svg)](https://swift.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -75,7 +75,7 @@ OpenCoreLocation is production-ready with comprehensive testing and documentatio
 Add OpenCoreLocation to your project using Swift Package Manager:
 
 ```swift
-// swift-tools-version:5.7
+// swift-tools-version:6.0
 import PackageDescription
 
 let package = Package(
@@ -84,7 +84,7 @@ let package = Package(
         .macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)
     ],
     dependencies: [
-        .package(url: "https://github.com/eaceto/OpenCoreLocation.git", from: "1.0.0")
+        .package(url: "https://github.com/eaceto/OpenCoreLocation.git", from: "1.1.0")
     ],
     targets: [
         .target(

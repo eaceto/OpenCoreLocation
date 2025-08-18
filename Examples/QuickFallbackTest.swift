@@ -2,6 +2,7 @@ import Foundation
 import OpenCoreLocation
 
 /// Very simple test to verify provider fallback
+@MainActor
 class QuickFallbackTest: CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private var requestCount = 0
@@ -26,7 +27,7 @@ class QuickFallbackTest: CLLocationManagerDelegate {
         locationManager.requestLocation()
         
         // Timeout after 8 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) { @MainActor in
             if self.requestCount < self.maxRequests {
                 print("")
                 self.makeLocationRequest()
@@ -41,7 +42,7 @@ class QuickFallbackTest: CLLocationManagerDelegate {
     
     // MARK: - CLLocationManagerDelegate
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
         print("   ✅ SUCCESS: Got location (\(location.coordinate.latitude), \(location.coordinate.longitude))")
@@ -57,14 +58,14 @@ class QuickFallbackTest: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("   ❌ Request failed: \(error.localizedDescription)")
         if error.localizedDescription.contains("gpsd") {
             print("   ℹ️  GPS failure is expected - testing fallback...")
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    nonisolated func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Auto-grant authorization for testing
         print("🔐 Authorization: \(status)")
     }

@@ -103,9 +103,9 @@ final class GPSLocationProvider: LocationProviderContract, @unchecked Sendable {
         request.timeoutInterval = 5.0
         
         do {
-            let (data, response) = try await session.data(for: request)
+            let (_, response) = try await session.data(for: request)
             
-            guard let httpResponse = response as? HTTPURLResponse else {
+            guard response is HTTPURLResponse else {
                 throw Errors.connectionFailed
             }
             

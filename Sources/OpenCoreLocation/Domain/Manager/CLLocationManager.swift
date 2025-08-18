@@ -27,8 +27,16 @@ open class CLLocationManager: NSObject {
     open var activityType: CLActivityType = .other
 
     /// The minimum distance (measured in meters) a device must move before an update event is generated.
+    /// 
+    /// - Note: Set to `kCLDistanceFilterNone` to disable distance filtering and receive all location updates.
+    ///         Values less than or equal to 0 disable the filter. Default is 10.0 meters.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/distancefilter)
-    open var distanceFilter: CLLocationDistance = 10.0
+    open var distanceFilter: CLLocationDistance = 10.0 {
+        didSet {
+            // Update the service implementation with the new distance filter
+            serviceImplementation.setDistanceFilter(distanceFilter)
+        }
+    }
 
     /// The accuracy of the location data that your app wants to receive.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/desiredaccuracy)
@@ -77,6 +85,9 @@ open class CLLocationManager: NSObject {
     public override init() {
         serviceImplementation = CLLocationManagerService()
         super.init()
+        
+        // Initialize service with current distance filter setting
+        serviceImplementation.setDistanceFilter(distanceFilter)
     }
 
     // MARK: - Authorization Methods

@@ -316,74 +316,26 @@ print("📍 Monitoring \(locationManager.monitoredRegions.count) regions")
 - **Background Monitoring**: Automatic checking with location updates
 - **Accuracy**: Depends on underlying location provider (GPS: ±5m, WiFi: ±50m, IP: ±1km)
 
-## 🧪 Testing
-
-Run the comprehensive test suite:
-
-```bash
-# Run all tests
-swift test
-
-# Run specific test suites
-swift test --filter CLLocationManagerTests
-swift test --filter CLLocationUtilsTests
-swift test --filter CLCircularRegionTests
-swift test --filter CLLocationManagerRegionMonitoringTests
-
-# Run with verbose output
-swift test --verbose
-```
-
-## 📚 Documentation
+## 📚 Documentation & Examples
 
 ### API Documentation
-Comprehensive API documentation is available in the `/docs` directory, generated using Jazzy:
-
-```bash
-# Generate documentation locally
-make docs
-
-# Or use the build script directly  
-./scripts/generate-docs.sh
-
-# View documentation
-open docs/index.html
-```
-
 **Online Documentation**: [https://eaceto.github.io/OpenCoreLocation](https://eaceto.github.io/OpenCoreLocation)
 
 ### Example Projects
-Check the `/Examples` directory for complete demonstration code:
+The `/Examples` directory contains demonstration code for all major features:
 
-#### **Core Functionality Examples**
 - **`LocationAccuracyExample.swift`**: Multi-provider accuracy system demonstration
 - **`DistanceFilterDemo.swift`**: Distance filtering and battery optimization examples  
 - **`LocationUtilsDemo.swift`**: Geographic utilities and calculations showcase
 - **`RegionMonitoringExample.swift`**: Complete geofencing implementation with entry/exit detection
 
-#### **Testing & Debugging Examples**
-- **`ProviderFallbackTest.swift`**: Comprehensive provider fallback behavior testing
-- **`QuickFallbackTest.swift`**: Simple test for GPS → WiFi → IP fallback verification
-- **`SimpleIPTest.swift`**: Direct IP geolocation provider testing
-
 #### Running Examples
 ```bash
-# Core functionality examples
+# Run examples using Swift Package Manager
 swift run LocationAccuracyExample     # Multi-provider accuracy testing
 swift run DistanceFilterDemo          # Distance filtering demonstration  
 swift run LocationUtilsDemo           # Geographic utilities showcase
 swift run RegionMonitoringExample     # Interactive region monitoring demo
-
-# Testing and debugging examples
-swift run ProviderFallbackTest        # Provider fallback system testing
-swift run QuickFallbackTest           # Simple fallback verification
-swift run SimpleIPTest               # IP geolocation testing
-
-# Or build all examples at once
-swift build
-
-# Copy examples to your project for integration
-cp Examples/RegionMonitoringExample.swift Sources/YourApp/
 ```
 
 ## 🔄 Cross-Platform Usage
@@ -406,34 +358,9 @@ manager.startUpdatingLocation()
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+Contributions are welcome! For development setup, testing, and contribution guidelines, see:
 
-### Development Setup
-```bash
-git clone https://github.com/eaceto/OpenCoreLocation.git
-cd OpenCoreLocation
-
-# Build and test
-swift build
-swift test
-
-# Use convenient make commands
-make help          # Show all available commands
-make build         # Build the project
-make test          # Run tests
-make docs          # Generate documentation
-make clean         # Clean build artifacts
-make dev           # Full development workflow
-```
-
-### Development Tools
-The project includes several convenient development tools:
-
-- **Makefile**: Convenient build commands and development workflows
-- **Documentation Generator**: Automated Jazzy documentation with GitHub Pages deployment  
-- **GitHub Actions**: Automated testing and documentation deployment
-- **Test Coverage**: Comprehensive test suite with >90% code coverage
-- **Code Quality**: Integrated linting and formatting tools
+**👨‍💻 [Developer Documentation](README-DEVS.md)** - Complete guide for contributors and maintainers
 
 ## 📄 License
 

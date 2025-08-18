@@ -2,7 +2,7 @@ import Foundation
 
 /// Represents a geographic coordinate in degrees.
 /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationcoordinate2d)
-public struct CLLocationCoordinate2D: CustomDebugStringConvertible, CustomStringConvertible {
+public struct CLLocationCoordinate2D: CustomDebugStringConvertible, CustomStringConvertible, Sendable {
 
     /// Initializes a coordinate with default values.
     public init() {

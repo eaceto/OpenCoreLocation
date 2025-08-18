@@ -14,20 +14,44 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for git tags
       
     - name: Setup Swift
       uses: swift-actions/setup-swift@v2
       with:
-        swift-version: "5.7"
+        swift-version: "6.0"
+    
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
     
     - name: Install Jazzy
-      run: gem install jazzy
+      run: |
+        echo "Installing Jazzy..."
+        sudo gem install jazzy
+        jazzy --version
       
-    - name: Build Project
-      run: swift build
+    - name: Make scripts executable
+      run: chmod +x scripts/generate-docs.sh
       
     - name: Generate Documentation
-      run: jazzy --config .jazzy.yaml
+      run: |
+        echo "Generating documentation with automatic version detection..."
+        make docs
+      
+    - name: Verify Documentation
+      run: |
+        echo "Verifying documentation was generated..."
+        if [ -f "docs/index.html" ]; then
+          echo "✅ Documentation generated successfully"
+          ls -la docs/
+        else
+          echo "❌ Documentation generation failed - index.html not found"
+          exit 1
+        fi
       
     - name: Upload Documentation Artifacts
       uses: actions/upload-artifact@v4

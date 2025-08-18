@@ -149,7 +149,7 @@ final class WiFiLocationProvider: LocationProviderContract, @unchecked Sendable 
         }
         
         // Build request body for MLS
-        let requestBody: [String: Any] = [
+        let _: [String: Any] = [
             "wifiAccessPoints": accessPoints.map { ap in
                 [
                     "macAddress": ap.macAddress,

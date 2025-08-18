@@ -161,5 +161,5 @@ release-prep: clean build test docs lint
 	@echo "Next steps:"
 	@echo "  1. Review generated documentation"
 	@echo "  2. Update version numbers if needed"
-	@echo "  3. Create git tag: git tag v1.0.0"
+	@echo "  3. Create git tag: git tag v1.2.0"
 	@echo "  4. Push changes: git push && git push --tags"

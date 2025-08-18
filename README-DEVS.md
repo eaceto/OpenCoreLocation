@@ -83,7 +83,14 @@ open docs/index.html
 
 ### Documentation Deployment
 
-Documentation is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch.
+Documentation is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch. The workflow:
+
+1. **Installs Dependencies**: Sets up Swift, Ruby, and Jazzy
+2. **Generates Documentation**: Uses `make docs` command with automatic version detection
+3. **Verifies Output**: Checks that documentation was generated successfully
+4. **Deploys to GitHub Pages**: Publishes documentation to https://eaceto.github.io/OpenCoreLocation
+
+**Workflow File**: `.github/workflows/documentation.yml`
 
 ## 🛠️ Build System & Make Commands
 
@@ -230,7 +237,7 @@ make release-prep
 
 1. Update version numbers in relevant files
 2. Update CHANGELOG.md
-3. Create git tag: `git tag v1.0.0`
+3. Create git tag: `git tag v1.2.0`
 4. Push changes: `git push && git push --tags`
 
 ## 🤝 Contributing Guidelines

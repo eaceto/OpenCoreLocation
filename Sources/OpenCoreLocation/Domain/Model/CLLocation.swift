@@ -55,7 +55,7 @@ open class CLLocation: NSObject, NSCopying, NSSecureCoding {
 
     /// Indicates that `CLLocation` supports secure coding.
     /// [Apple Documentation](https://developer.apple.com/documentation/foundation/nssecurecoding)
-    public static var supportsSecureCoding: Bool = true
+    public static let supportsSecureCoding: Bool = true
 
     // MARK: - Initialization
 

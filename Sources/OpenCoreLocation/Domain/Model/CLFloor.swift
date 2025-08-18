@@ -19,7 +19,7 @@ public class CLFloor: NSObject, NSCopying, NSSecureCoding {
 
     /// Indicates that `CLFloor` supports secure coding.
     /// [Apple Documentation](https://developer.apple.com/documentation/foundation/nssecurecoding)
-    public static var supportsSecureCoding: Bool = true
+    public static let supportsSecureCoding: Bool = true
 
     // MARK: - Initialization
 

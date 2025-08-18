@@ -22,7 +22,7 @@ open class CLRegion: NSObject, NSCopying, NSSecureCoding {
 
     // MARK: - Secure Coding Conformance
     /// Required for `NSSecureCoding`
-    public static var supportsSecureCoding: Bool = true
+    public static let supportsSecureCoding: Bool = true
 
     /// Initializes a region with the specified center and radius.
     /// - Parameters:

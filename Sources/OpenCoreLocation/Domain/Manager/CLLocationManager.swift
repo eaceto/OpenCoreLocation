@@ -122,16 +122,24 @@ open class CLLocationManager: NSObject {
     }
 
     // MARK: - Heading Management
-    /// Starts the generation of updates that report the user’s current heading.
+    /// Starts the generation of updates that report the user's current heading.
+    /// 
+    /// - Note: Heading updates require magnetometer hardware which is not available on Linux.
+    ///         This method is a no-op on Linux platforms and will not generate heading updates.
+    ///         Use `headingAvailable()` to check if heading services are available.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/startupdatingheading())
     open func startUpdatingHeading() {
-
+        // Heading updates are not supported on Linux due to lack of magnetometer hardware
+        // This is a no-op to maintain API compatibility
     }
 
     /// Stops the generation of heading updates.
+    /// 
+    /// - Note: This method is a no-op on Linux platforms since heading updates are not supported.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/stopupdatingheading())
     open func stopUpdatingHeading() {
-
+        // Heading updates are not supported on Linux
+        // This is a no-op to maintain API compatibility
     }
 
     // MARK: - Service Availability
@@ -141,22 +149,39 @@ open class CLLocationManager: NSObject {
     }
 
     /// Returns a Boolean value indicating whether the location manager is able to generate heading-related events.
+    /// 
+    /// - Returns: Always returns `false` on Linux platforms as magnetometer hardware is not available.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/headingavailable())
     open class func headingAvailable() -> Bool {
+        // Heading services require magnetometer hardware which is not available on Linux
         return false
     }
 
     /// Returns a Boolean value indicating whether the significant-change location service is available on the device.
+    /// 
+    /// - Returns: Always returns `false` on Linux platforms as this service requires OS-level support not available on Linux.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/significantlocationchangemonitoringavailable())
     open class func significantLocationChangeMonitoringAvailable() -> Bool {
+        // Significant location change monitoring requires OS-level support not available on Linux
         return false
     }
 
     /// Returns a Boolean value indicating whether the device supports region monitoring using the specified class.
+    /// 
+    /// - Parameter regionClass: The class of region to check support for.
+    /// - Returns: Always returns `false` on Linux platforms as region monitoring requires OS-level support not available on Linux.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/ismonitoringavailable(for:))
     open class func isMonitoringAvailable(for regionClass: AnyClass) -> Bool {
+        // Region monitoring requires OS-level geofencing support not available on Linux
         return false
     }
 
     /// Returns a Boolean value indicating whether the device supports ranging of beacons that use the iBeacon protocol.
+    /// 
+    /// - Returns: Always returns `false` on Linux platforms as beacon ranging requires Bluetooth LE hardware integration.
+    /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/israngingavailable())
     open class func isRangingAvailable() -> Bool {
+        // Beacon ranging requires Bluetooth LE hardware integration not available on Linux
         return false
     }
 }

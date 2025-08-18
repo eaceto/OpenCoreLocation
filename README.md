@@ -355,18 +355,29 @@ open docs/index.html
 ### Example Projects
 Check the `/Examples` directory for complete demonstration code:
 
+#### **Core Functionality Examples**
 - **`LocationAccuracyExample.swift`**: Multi-provider accuracy system demonstration
 - **`DistanceFilterDemo.swift`**: Distance filtering and battery optimization examples  
 - **`LocationUtilsDemo.swift`**: Geographic utilities and calculations showcase
 - **`RegionMonitoringExample.swift`**: Complete geofencing implementation with entry/exit detection
 
+#### **Testing & Debugging Examples**
+- **`ProviderFallbackTest.swift`**: Comprehensive provider fallback behavior testing
+- **`QuickFallbackTest.swift`**: Simple test for GPS → WiFi → IP fallback verification
+- **`SimpleIPTest.swift`**: Direct IP geolocation provider testing
+
 #### Running Examples
 ```bash
-# Run examples using Swift Package Manager
-swift run RegionMonitoringExample     # Interactive region monitoring demo
-swift run LocationUtilsDemo           # Geographic utilities showcase  
-swift run DistanceFilterDemo          # Distance filtering demonstration
+# Core functionality examples
 swift run LocationAccuracyExample     # Multi-provider accuracy testing
+swift run DistanceFilterDemo          # Distance filtering demonstration  
+swift run LocationUtilsDemo           # Geographic utilities showcase
+swift run RegionMonitoringExample     # Interactive region monitoring demo
+
+# Testing and debugging examples
+swift run ProviderFallbackTest        # Provider fallback system testing
+swift run QuickFallbackTest           # Simple fallback verification
+swift run SimpleIPTest               # IP geolocation testing
 
 # Or build all examples at once
 swift build

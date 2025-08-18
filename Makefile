@@ -23,11 +23,14 @@ help:
 	@echo "  lint       - Lint code (if swiftlint is available)"
 	@echo ""
 	@echo "Examples:"
-	@echo "  examples            - List available example files"
-	@echo "  run-region-example  - Run region monitoring example"
-	@echo "  run-utils-example   - Run location utilities example" 
-	@echo "  run-filter-example  - Run distance filter example"
-	@echo "  run-accuracy-example- Run accuracy demonstration"
+	@echo "  examples              - List available example files"
+	@echo "  run-region-example    - Run region monitoring example"
+	@echo "  run-utils-example     - Run location utilities example" 
+	@echo "  run-filter-example    - Run distance filter example"
+	@echo "  run-accuracy-example  - Run accuracy demonstration"
+	@echo "  run-fallback-test     - Run provider fallback test"
+	@echo "  run-quick-fallback    - Run simple fallback verification"
+	@echo "  run-ip-test           - Run IP geolocation test"
 	@echo ""
 
 # Build the project
@@ -110,6 +113,9 @@ examples:
 	@echo "  swift run LocationUtilsDemo"
 	@echo "  swift run DistanceFilterDemo"
 	@echo "  swift run LocationAccuracyExample"
+	@echo "  swift run ProviderFallbackTest"
+	@echo "  swift run QuickFallbackTest"
+	@echo "  swift run SimpleIPTest"
 
 # Run individual examples
 run-region-example:
@@ -127,6 +133,18 @@ run-filter-example:
 run-accuracy-example:
 	@echo "🎯 Running accuracy example..."
 	swift run LocationAccuracyExample
+
+run-fallback-test:
+	@echo "🔄 Running provider fallback test..."
+	swift run ProviderFallbackTest
+
+run-quick-fallback:
+	@echo "⚡ Running quick fallback verification..."
+	swift run QuickFallbackTest
+
+run-ip-test:
+	@echo "🌐 Running IP geolocation test..."
+	swift run SimpleIPTest
 
 # Development workflow
 dev: clean build test docs

@@ -27,6 +27,17 @@ OpenCoreLocation is a comprehensive Swift package that brings Apple's **CoreLoca
 - **Multiple Region Support**: Monitor multiple regions simultaneously
 - **Background Monitoring**: Automatic region checking with location updates
 
+### 🔋 **Background Location Updates** *(New in v1.2.0)*
+- **Adaptive Intervals**: Dynamic update frequencies based on app state and movement
+  - Foreground: 1-second intervals for real-time tracking
+  - Background: 30-second intervals for efficiency
+  - Stationary: 60-second intervals when no movement detected
+- **Automatic Pausing**: Smart `pausesLocationUpdatesAutomatically` implementation
+  - Detects when device is stationary (< 10m movement for 60s)
+  - Automatically resumes when movement is detected
+- **Power Efficiency**: Intelligent provider selection and caching for battery optimization
+- **Real-time Adaptation**: Seamless transitions between update modes
+
 ### 🌍 **Comprehensive Geographic Utilities**
 - **CLLocationUtils**: Centralized geographic calculations and utilities
 - **Distance Calculations**: Accurate great-circle distance using haversine formula
@@ -42,7 +53,15 @@ OpenCoreLocation is a comprehensive Swift package that brings Apple's **CoreLoca
 
 OpenCoreLocation is production-ready with comprehensive testing and documentation. The library provides a robust, feature-complete implementation of CoreLocation APIs for Linux systems.
 
-### 🆕 Recent Updates (v1.1.0)
+### 🆕 Recent Updates (v1.2.0)
+- **🆕 Background Location Updates**: Full implementation of `allowsBackgroundLocationUpdates` with adaptive intervals
+- **🆕 Automatic Pausing**: Smart `pausesLocationUpdatesAutomatically` with stationary detection
+- **🆕 Adaptive Intervals**: Dynamic update frequencies (1s foreground, 30s background, 60s stationary)
+- **🆕 Swift 6.0 Support**: Complete upgrade to Swift 6.0 with strict concurrency compliance
+- **🆕 Enhanced Examples**: New BackgroundLocationExample demonstrating power-efficient tracking
+- **✅ Cross-Platform Build**: Improved CI/CD and development workflow
+
+### 📜 Previous Updates (v1.1.0)
 - **✅ Real-time Region Monitoring**: Complete geofencing implementation with entry/exit callbacks
 - **✅ Enhanced Documentation**: Full API documentation with GitHub Pages deployment
 - **✅ Development Tools**: Makefile, automated testing, and CI/CD integration
@@ -52,20 +71,23 @@ OpenCoreLocation is production-ready with comprehensive testing and documentatio
 
 ### ✅ Implemented Features
 - [x] **Core Location APIs**: `CLLocationManager`, `CLLocationManagerDelegate`, `CLLocation`
+- [x] **Background Location Updates**: `allowsBackgroundLocationUpdates` with adaptive intervals
+- [x] **Automatic Pausing**: `pausesLocationUpdatesAutomatically` with stationary detection
 - [x] **Geocoding**: `CLGeocoder` with OpenStreetMap integration  
 - [x] **Region Monitoring**: `CLRegion`, `CLCircularRegion` with real-time geofencing
 - [x] **Multi-Provider System**: GPS, WiFi, and IP-based location providers
 - [x] **Distance Filtering**: Intelligent location update filtering
 - [x] **Geographic Utilities**: `CLLocationUtils` with distance/bearing calculations
 - [x] **Cross-Platform**: Support for Linux, macOS, iOS, tvOS, and watchOS
-- [x] **Comprehensive Testing**: 50+ test cases with >90% code coverage
+- [x] **Swift 6.0 Compatibility**: Full concurrency compliance and modern Swift features
+- [x] **Comprehensive Testing**: 60+ test cases with >90% code coverage
 - [x] **Region Geofencing**: Entry/exit detection with delegate callbacks
 - [x] **Documentation System**: Complete API documentation with Jazzy integration
 
 ### 🚧 Future Enhancements
 - [ ] **Visit Detection**: `CLVisit` for detecting significant locations
 - [ ] **Beacon Ranging**: iBeacon support for proximity detection
-- [ ] **Background Updates**: Persistent location tracking capabilities
+- [ ] **Advanced Background Modes**: System-level daemon integration for Linux
 - [ ] **Region Monitoring on GPS Loss**: Fallback strategies for provider failures
 
 ## 📦 Installation
@@ -84,7 +106,7 @@ let package = Package(
         .macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)
     ],
     dependencies: [
-        .package(url: "https://github.com/eaceto/OpenCoreLocation.git", from: "1.1.0")
+        .package(url: "https://github.com/eaceto/OpenCoreLocation.git", from: "1.2.0")
     ],
     targets: [
         .target(

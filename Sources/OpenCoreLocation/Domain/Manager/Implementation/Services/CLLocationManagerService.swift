@@ -34,6 +34,23 @@ final class CLLocationManagerService {
     private var monitoredRegions: Set<CLRegion> = []
     private var regionStates: [String: CLRegionState] = [:]
     private let regionMonitoringQueue = DispatchQueue(label: "com.opencorelocation.CLLocationManagerService.regions", attributes: .concurrent)
+    
+    /// Background location updates configuration
+    private var allowsBackgroundLocationUpdates: Bool = false
+    private var pausesLocationUpdatesAutomatically: Bool = false
+    
+    /// Stationary detection for automatic pausing
+    private var stationaryLocation: SendableCLLocation?
+    private var stationaryStartTime: Date?
+    private let stationaryThreshold: CLLocationDistance = 10.0 // meters
+    private let stationaryTimeout: TimeInterval = 60.0 // seconds
+    private var isPaused: Bool = false
+    
+    /// Adaptive interval management
+    private var currentUpdateInterval: TimeInterval = 1.0
+    private let foregroundInterval: TimeInterval = 1.0
+    private let backgroundInterval: TimeInterval = 30.0
+    private let stationaryInterval: TimeInterval = 60.0
 
     // MARK: - Initializer
     init() {
@@ -71,6 +88,30 @@ final class CLLocationManagerService {
     func resetDistanceFilter() {
         locationTrackingQueue.async(flags: .barrier) {
             self.lastReportedLocation = nil
+        }
+    }
+    
+    /// Configures background location updates
+    /// - Parameter allowed: Whether background location updates are allowed
+    func setAllowsBackgroundLocationUpdates(_ allowed: Bool) {
+        queue.async(flags: .barrier) {
+            self.allowsBackgroundLocationUpdates = allowed
+            // Adjust update interval based on background mode
+            self.adjustUpdateInterval()
+        }
+    }
+    
+    /// Configures automatic pausing of location updates
+    /// - Parameter pauses: Whether location updates should pause automatically when stationary
+    func setPausesLocationUpdatesAutomatically(_ pauses: Bool) {
+        queue.async(flags: .barrier) {
+            self.pausesLocationUpdatesAutomatically = pauses
+            if !pauses {
+                // Reset paused state if automatic pausing is disabled
+                self.isPaused = false
+                self.stationaryLocation = nil
+                self.stationaryStartTime = nil
+            }
         }
     }
     
@@ -189,6 +230,92 @@ final class CLLocationManagerService {
         }
     }
     
+    /// Checks if the device is stationary and handles automatic pausing
+    /// - Parameter location: The new location to check
+    private func checkStationaryStatus(_ location: SendableCLLocation) {
+        guard pausesLocationUpdatesAutomatically else { return }
+        
+        queue.async(flags: .barrier) {
+            if let stationaryLoc = self.stationaryLocation {
+                // Calculate distance from stationary point
+                let distance = CLLocationUtils.calculateDistance(
+                    from: (latitude: stationaryLoc.latitude, longitude: stationaryLoc.longitude),
+                    to: (latitude: location.latitude, longitude: location.longitude)
+                )
+                
+                if distance <= self.stationaryThreshold {
+                    // Still stationary
+                    if let startTime = self.stationaryStartTime {
+                        let stationaryDuration = Date().timeIntervalSince(startTime)
+                        
+                        // Pause updates if stationary for too long
+                        if stationaryDuration >= self.stationaryTimeout && !self.isPaused {
+                            self.isPaused = true
+                            self.adjustUpdateInterval()
+                            print("[CLLocationManagerService] Pausing location updates - device stationary for \(Int(stationaryDuration))s")
+                        }
+                    }
+                } else {
+                    // Device has moved
+                    if self.isPaused {
+                        print("[CLLocationManagerService] Resuming location updates - device moved \(Int(distance))m")
+                    }
+                    self.isPaused = false
+                    self.stationaryLocation = location
+                    self.stationaryStartTime = Date()
+                    self.adjustUpdateInterval()
+                }
+            } else {
+                // First location, start tracking
+                self.stationaryLocation = location
+                self.stationaryStartTime = Date()
+                self.isPaused = false
+            }
+        }
+    }
+    
+    /// Adjusts the update interval based on current conditions
+    private func adjustUpdateInterval() {
+        var newInterval: TimeInterval
+        
+        if isPaused {
+            // Device is stationary, use longest interval
+            newInterval = stationaryInterval
+        } else if allowsBackgroundLocationUpdates {
+            // Background mode, use longer interval
+            newInterval = backgroundInterval
+        } else {
+            // Foreground mode, use normal interval
+            newInterval = foregroundInterval
+        }
+        
+        // Only restart timer if interval has changed
+        if newInterval != currentUpdateInterval {
+            currentUpdateInterval = newInterval
+            
+            // Restart the timer with new interval if it's running
+            if locationUpdateTimer != nil {
+                let accuracy = currentProvider?.poolInterval ?? kCLLocationAccuracyBest
+                restartLocationUpdates(with: accuracy)
+            }
+        }
+    }
+    
+    /// Restarts location updates with a new interval
+    private func restartLocationUpdates(with accuracy: CLLocationAccuracy) {
+        // Store current timer state
+        let wasRunning = locationUpdateTimer != nil
+        
+        if wasRunning {
+            stopUpdatingLocation()
+            
+            // Restart with new interval
+            queue.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                self?.startUpdatingLocation(with: accuracy)
+            }
+        }
+    }
+    
 
     // MARK: - One-Time Location Request
     /// Requests the user's location **once** (single update)
@@ -201,8 +328,13 @@ final class CLLocationManagerService {
             // Apply distance filter before reporting location
             if shouldReportLocation(location) {
                 updateLastReportedLocation(location)
+                checkStationaryStatus(location)
                 checkRegionBoundaries(for: location)
-                delegate?.locationManagerService(self, didUpdateLocation: location)
+                
+                // Don't report location if paused due to being stationary
+                if !isPaused {
+                    delegate?.locationManagerService(self, didUpdateLocation: location)
+                }
             }
         } catch {
             delegate?.locationManagerService(self, didFailWithError: error)
@@ -218,10 +350,13 @@ final class CLLocationManagerService {
             delegate?.locationManagerService(self, didFailWithError: Errors.noProviderForAccuracy)
             return
         }
+        
+        currentProvider = provider
 
-        let interval = provider.poolInterval
+        // Use adaptive interval based on background mode and stationary status
+        let interval = currentUpdateInterval
 
-        // Start the timer with the provider's pool interval
+        // Start the timer with the adaptive interval
         let timer = DispatchSource.makeTimerSource(queue: queue)
         timer.schedule(deadline: .now(), repeating: interval)
 
@@ -233,6 +368,8 @@ final class CLLocationManagerService {
 
         locationUpdateTimer = timer // Store the timer reference
         timer.resume() // Start the timer
+        
+        print("[CLLocationManagerService] Started location updates with interval: \(interval)s")
     }
 
     func stopUpdatingLocation() {

@@ -35,7 +35,10 @@ let package = Package(
             targets: ["QuickFallbackTest"]),
         .executable(
             name: "SimpleIPTest",
-            targets: ["SimpleIPTest"])
+            targets: ["SimpleIPTest"]),
+        .executable(
+            name: "BackgroundLocationExample",
+            targets: ["BackgroundLocationExample"])
     ],
     targets: [
         .target(
@@ -82,6 +85,11 @@ let package = Package(
             name: "SimpleIPTest",
             dependencies: ["OpenCoreLocation"],
             path: "Examples",
-            sources: ["SimpleIPTest.swift"])
+            sources: ["SimpleIPTest.swift"]),
+        .executableTarget(
+            name: "BackgroundLocationExample",
+            dependencies: ["OpenCoreLocation"],
+            path: "Examples",
+            sources: ["BackgroundLocationExample.swift"])
     ]
 )

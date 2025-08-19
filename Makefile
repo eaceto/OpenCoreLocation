@@ -1,7 +1,7 @@
 # OpenCoreLocation Makefile
 # Provides convenient commands for development tasks
 
-.PHONY: build test clean docs help install-deps
+.PHONY: build test clean docs help install-deps examples run-background run-region-example run-utils-example run-filter-example run-accuracy-example run-fallback-test run-quick-fallback run-ip-test
 
 # Default target
 help:
@@ -24,6 +24,7 @@ help:
 	@echo ""
 	@echo "Examples:"
 	@echo "  examples              - List available example files"
+	@echo "  run-background        - Run background location updates example"
 	@echo "  run-region-example    - Run region monitoring example"
 	@echo "  run-utils-example     - Run location utilities example" 
 	@echo "  run-filter-example    - Run distance filter example"
@@ -104,20 +105,46 @@ lint:
 
 # List example files
 examples:
-	@echo "📘 Available example files:"
-	@echo "=========================="
-	@ls -la Examples/*.swift 2>/dev/null | awk '{print "  " $$NF " - " $$5 " bytes"}' || echo "  No example files found"
+	@echo "📘 Available Examples:"
+	@echo "====================="
 	@echo ""
-	@echo "Run examples with:"
-	@echo "  swift run RegionMonitoringExample"
-	@echo "  swift run LocationUtilsDemo"
-	@echo "  swift run DistanceFilterDemo"
-	@echo "  swift run LocationAccuracyExample"
-	@echo "  swift run ProviderFallbackTest"
-	@echo "  swift run QuickFallbackTest"
-	@echo "  swift run SimpleIPTest"
+	@echo "1. BackgroundLocationExample"
+	@echo "   - Demonstrates background location updates with automatic pausing"
+	@echo "   - Run: swift run BackgroundLocationExample"
+	@echo ""
+	@echo "2. RegionMonitoringExample"
+	@echo "   - Shows how to monitor geographic regions"
+	@echo "   - Run: swift run RegionMonitoringExample"
+	@echo ""
+	@echo "3. LocationAccuracyExample"
+	@echo "   - Demonstrates different accuracy levels and providers"
+	@echo "   - Run: swift run LocationAccuracyExample"
+	@echo ""
+	@echo "4. DistanceFilterDemo"
+	@echo "   - Shows how distance filtering works"
+	@echo "   - Run: swift run DistanceFilterDemo"
+	@echo ""
+	@echo "5. LocationUtilsDemo"
+	@echo "   - Demonstrates utility functions (distance, bearing)"
+	@echo "   - Run: swift run LocationUtilsDemo"
+	@echo ""
+	@echo "6. ProviderFallbackTest"
+	@echo "   - Tests automatic provider fallback mechanism"
+	@echo "   - Run: swift run ProviderFallbackTest"
+	@echo ""
+	@echo "7. QuickFallbackTest"
+	@echo "   - Quick verification of provider fallback"
+	@echo "   - Run: swift run QuickFallbackTest"
+	@echo ""
+	@echo "8. SimpleIPTest"
+	@echo "   - Tests IP-based geolocation"
+	@echo "   - Run: swift run SimpleIPTest"
 
 # Run individual examples
+run-background:
+	@echo "🌍 Running background location updates example..."
+	swift run BackgroundLocationExample
+
 run-region-example:
 	@echo "🎯 Running region monitoring example..."
 	swift run RegionMonitoringExample

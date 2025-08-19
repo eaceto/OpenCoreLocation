@@ -16,28 +16,28 @@
     },
     {
       "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
-      "line": 85,
+      "line": 93,
       "symbol": "CLLocationManager.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
-      "line": 94,
+      "line": 102,
       "symbol": "CLLocationManager.requestWhenInUseAuthorization()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
-      "line": 99,
+      "line": 107,
       "symbol": "CLLocationManager.requestAlwaysAuthorization()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kimi/Works/eaceto.dev/projects/OSS/OpenCoreLocation/Sources/OpenCoreLocation/Domain/Manager/CLLocationManager.swift",
-      "line": 104,
+      "line": 112,
       "symbol": "CLLocationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey:completion:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

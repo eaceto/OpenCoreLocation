@@ -44,11 +44,19 @@ open class CLLocationManager: NSObject {
 
     /// A Boolean value that indicates whether the location manager may pause location updates.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/pauseslocationupdatesautomatically)
-    open var pausesLocationUpdatesAutomatically: Bool = false
+    open var pausesLocationUpdatesAutomatically: Bool = false {
+        didSet {
+            serviceImplementation.setPausesLocationUpdatesAutomatically(pausesLocationUpdatesAutomatically)
+        }
+    }
 
     /// A Boolean value that indicates whether the app receives location updates when running in the background.
     /// [Apple Documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager/allowsbackgroundlocationupdates)
-    open var allowsBackgroundLocationUpdates: Bool = false
+    open var allowsBackgroundLocationUpdates: Bool = false {
+        didSet {
+            serviceImplementation.setAllowsBackgroundLocationUpdates(allowsBackgroundLocationUpdates)
+        }
+    }
 
     // MARK: - Location and Heading Properties
     /// The most recently retrieved user location.
